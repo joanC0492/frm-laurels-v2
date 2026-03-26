@@ -337,7 +337,7 @@ get_header(); ?>
                     <?php endif; ?>
                 </div>
             </div>
-        </section>
+        </section> 
     <?php endif; ?>
 
     <!-- ===================== SECTION 09 — CTA Final (dark) ===================== -->
