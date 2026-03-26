@@ -1,0 +1,301 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.prime{
+    &_title{
+        @include m.svg_4_title;
+    }
+}
+
+.showcase{
+
+    @include m.above;
+
+    @media (min-width: v.$laptop){
+        padding-block: m.px-to-vw(184px);
+    }
+    @include m.laptop{
+        padding-block: 132px;
+    }
+    @include m.notebook{
+        padding-block: 100px;
+    }
+    @include m.tablet{
+        padding-block: 70px;
+    }
+
+    &_images{
+        @include m.flex(space-between, 0);
+
+        div{
+            position: relative;
+            @include m.transition(1s);
+            transition-delay: 1s;
+            @media (min-width: v.$laptop){
+                width: calc((100% - m.px-to-vw(24px)) / 3);
+            }
+            @include m.laptop{
+                width: calc((100% - 18px) / 3);
+            }
+            @media (max-width: 530px){
+                width: 100%;
+            }
+            
+            img{
+                display: block;
+                pointer-events: none;
+                width: 100%;
+            }
+            &:first-child{
+                @media (min-width: v.$laptop){
+                    top: m.px-to-vw(-52px);
+                }
+                @include m.laptop{
+                    top: -32px;
+                }
+                @include m.notebook{
+                    top: 0;
+                }
+            }
+            &:last-child{
+                @media (min-width: v.$laptop){
+                    bottom: m.px-to-vw(-52px);
+                }
+                @include m.laptop{
+                    bottom: -32px;
+                }
+                @include m.notebook{
+                    bottom: 0;
+                }
+            }
+        }
+    }
+
+    &.in_animation_progress{
+        .showcase{
+            &_images{
+
+                div{
+
+                    &:first-child{
+                        @media (min-width: v.$laptop){
+                            top: m.px-to-vw(52px);
+                        }
+                        @include m.laptop{
+                            top: 32px;
+                        }
+                        @include m.notebook{
+                            top: 0;
+                        }
+                    }
+                    &:last-child{
+                        @media (min-width: v.$laptop){
+                            bottom: m.px-to-vw(52px);
+                        }
+                        @include m.laptop{
+                            bottom: 32px;
+                        }
+                        @include m.notebook{
+                            bottom: 0;
+                        }
+                    }
+
+                }
+
+            }
+        }
+    }
+}
+
+.about_prime{
+    &::before{
+        opacity: 0.5;
+    }
+    .about_digital{
+        &-box{
+            h2{
+                @media (min-width: v.$laptop){
+                    width: m.px-to-vw(970px);
+                }
+                @include m.laptop{
+                    width: 870px;
+
+                    br{
+                        display: none;
+                    }
+                }
+                @include m.notebook{
+                    width: 100%;
+                }
+            }
+        }
+        &-title{
+            @include m.notebook{
+                width: 100% !important;
+            }
+        }
+    }
+
+    &.in_animation_progress{
+        .about_digital{
+            &-title{
+                width: 100%;
+            }
+            &-description{
+                .overflow{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.cta{
+    @include m.above;
+    @media (min-width: v.$laptop){
+        padding-block: m.px-to-vw(93px) m.px-to-vw(160px);
+    }
+    @include m.laptop{
+        padding-block: 62px 124px;
+    }
+    @include m.tablet{
+        padding-block: 35px 92px;
+    }
+
+    &_content{
+        &>*{
+            width: 100%;
+            overflow: hidden;
+            margin-inline: auto;
+        }
+    }
+    &_title{
+        @media (min-width: v.$laptop){
+            max-width: m.px-to-vw(880px);
+        }
+        @include m.laptop{
+            max-width: 798px;
+        }
+        h2{
+            @include m.h3(v.$black);
+            text-align: center;
+        }
+        h3{
+            @include m.h5;
+            text-align: center;
+
+            b, strong, span{
+                color: v.$gold;
+                font-weight: 500 !important;   
+            }
+
+            @include m.laptop{
+                br{
+                    display: none;
+                }
+            }
+        }
+
+        &>*{
+            position: relative;
+            opacity: 0;
+            @include m.transition(.75s);
+
+            @media (min-width: v.$laptop){
+                bottom: m.px-to-vw(-260px);
+            }
+            @include m.laptop{
+                bottom: -260px;
+            }
+        }
+    }
+    &_description, &_txt{
+        @media (min-width: v.$laptop){
+            margin-block: m.px-to-vw(32px);
+        }
+        @include m.laptop{
+            margin-block: 24px;
+        }
+
+        p{
+            @include m.body(v.$black);
+            text-align: center;
+        }
+        br{
+            @include m.laptop{
+                display: none;
+            }
+        }
+    }
+    &_description{
+        @media (min-width: v.$laptop){
+            max-width: m.px-to-vw(590px);
+        }
+        @include m.laptop{
+            max-width: 490px;
+        }
+
+        &>*{
+            position: relative;
+            opacity: 0;
+            @include m.transition(.75s);
+
+            @media (min-width: v.$laptop){
+                bottom: m.px-to-vw(-80px);
+            }
+            @include m.laptop{
+                bottom: -80px;
+            }
+        }
+    }
+    &_txt{
+        @media (min-width: v.$laptop){
+            max-width: m.px-to-vw(668px);
+        }
+        @include m.laptop{
+            max-width: 588px;
+        }
+
+        &>*{
+            position: relative;
+            opacity: 0;
+            @include m.transition(.75s);
+
+            @media (min-width: v.$laptop){
+                bottom: m.px-to-vw(-115px);
+            }
+            @include m.laptop{
+                bottom: -115px;
+            }
+        }
+    }
+    &_actions{
+        a{
+            opacity: 0;
+            @include m.transition(.75s);
+            @include m.button(142px, v.$white, v.$black);
+            margin-inline: auto;
+
+            @media (min-width: v.$laptop){
+                bottom: m.px-to-vw(-80px);
+            }
+            @include m.laptop{
+                bottom: -80px;
+            }
+
+            &::after{
+                filter: none;
+            }
+        }
+    }
+    &.in_animation_progress{
+        .cta{
+            &_txt, &_actions, &_description, &_title{
+                &>*{
+                    opacity: 1;
+                    bottom: 0;
+                }
+            }
+        }
+    }
+}

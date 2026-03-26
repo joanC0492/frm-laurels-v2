@@ -1,0 +1,179 @@
+<?php
+/*
+    Template name: for-sale
+*/
+
+get_header();
+
+function build_filter_url($key, $value) {
+    $params = $_GET;
+    $params[$key] = $value;
+    unset($params['pagination']);
+
+    return esc_url(add_query_arg($params, home_url('for-sale')));
+}
+?>
+
+<section class="for_sale">
+    <div class="container">
+        <div class="for_sale-title animation_title">
+            <h1>Property For Sale<span>.<svg xmlns="http://www.w3.org/2000/svg" width="56" height="70" viewBox="0 0 56 70" fill="none">
+                        <path d="M34.3275 33.872C34.143 33.8 33.9306 33.7671 33.7445 33.7057C31.7724 33.0311 29.8049 32.8894 27.8031 33.6007C27.0327 33.8725 26.2386 34.0863 25.4445 34.3001C25.2067 34.3611 24.9536 34.311 24.7028 34.3156C24.6898 34.2593 24.6661 34.2013 24.6425 34.1434C24.8117 33.9632 24.9434 33.7446 25.1379 33.6117C26.6874 32.5915 28.2459 31.5835 29.815 30.5772C30.3462 30.2358 30.918 30.1939 31.5025 30.4908C32.1867 30.8466 32.8865 31.1722 33.5584 31.5369C35.3235 32.4945 37.1723 33.0523 39.2129 32.7925C40.622 32.6087 41.9236 32.1367 43.1118 31.3429C43.7288 30.9388 43.7274 30.667 43.0996 30.2982C42.7404 30.0905 42.3812 29.8828 42.0097 29.6841C40.7352 28.998 39.3756 28.5811 37.9152 28.6048C36.9121 28.6234 35.8992 28.7056 34.8929 28.7453C34.7516 28.7452 34.6062 28.7009 34.3726 28.6648C34.5329 28.4723 34.6302 28.3353 34.7438 28.2334C35.1304 27.913 35.544 27.6294 35.911 27.2952C36.7235 26.5411 37.6417 26.3682 38.6837 26.6599C40.0589 27.0466 41.4271 26.9868 42.8069 26.7116C45.4979 26.1831 47.7263 24.9203 49.2908 22.6097C49.7144 21.98 49.5709 21.6428 48.8374 21.6053C46.9605 21.5103 45.1291 21.683 43.4172 22.5586C42.8991 22.8152 42.3648 23.0366 41.8214 23.2458C41.6474 23.3166 41.4317 23.3049 41.2308 23.339C41.2055 23.2917 41.168 23.2532 41.141 23.2165C41.2359 23.0248 41.2933 22.7947 41.4364 22.643C42.24 21.7355 43.0616 20.8524 43.8849 19.9587C44.2912 19.511 44.7897 19.2406 45.382 19.1368C46.4219 18.9501 47.4422 18.7496 48.4805 18.5736C49.7198 18.3635 50.8832 18.0113 51.922 17.2705C53.4004 16.2176 54.3034 14.7387 55.0015 13.1087C55.1578 12.731 55.4301 12.3061 55.1184 11.9319C54.8173 11.5594 54.3442 11.736 53.9407 11.8148C51.4964 12.2946 49.4576 13.4563 47.8371 15.3563C47.6785 15.5381 47.3664 15.5876 47.1311 15.7033L47.2411 14.9925C47.2444 14.9712 47.26 14.9411 47.2739 14.9215C48.4528 12.5729 49.8881 10.3944 51.5242 8.323C53.3778 5.97024 54.2703 3.29489 53.6643 0.257203L53.5051 0.232549C53.0295 0.495676 52.4984 0.695899 52.0677 1.02029C49.7669 2.74981 48.3104 4.92506 48.3439 7.93929C48.3619 9.93 47.8662 11.7977 46.7572 13.4836C46.3303 14.1345 45.9532 14.8148 45.5353 15.4779C45.4486 15.6166 45.2729 15.698 45.1364 15.8072C45.0671 15.6227 44.9962 15.4488 44.9481 15.2675C44.9262 15.199 44.9622 15.1068 44.9843 15.0342C45.2309 14.0729 45.458 13.0978 45.7152 12.1383C46.3207 9.84214 46.1813 7.58277 45.2601 5.38706C45.0164 4.78445 44.5688 4.72603 44.1527 5.23734C43.0922 6.53968 42.3444 7.99906 41.991 9.64984C41.4105 12.4169 41.8453 15.0153 43.2711 17.463C43.727 18.2396 43.7138 18.4657 43.0835 19.096C41.4845 20.7169 39.857 22.3116 38.24 23.908C38.1002 24.0384 37.9335 24.1321 37.7685 24.2152C37.6753 24.2551 37.5389 24.2231 37.4295 24.2279C37.4337 24.1308 37.4076 24.0181 37.4436 23.9259C37.6687 23.385 37.8742 22.8302 38.1613 22.3098C38.8566 21.0487 39.3249 19.709 39.545 18.2875C39.7453 16.9932 39.6966 15.6929 39.5171 14.3942C39.4709 14.0611 39.5014 13.6531 39.1005 13.5041C38.7102 13.3568 38.4004 13.6021 38.1062 13.8173C38.0572 13.8531 38.0065 13.8996 37.9558 13.9461C35.8189 16.092 34.6708 18.6627 34.7876 21.7006C34.8324 22.8156 35.0945 23.9316 35.2929 25.0378C35.4254 25.797 35.3606 26.1454 34.773 26.4998C33.4769 27.2877 32.1702 28.074 30.8382 28.8128C30.4329 29.0434 29.9517 29.1318 29.5032 29.2905C29.455 29.2505 29.4191 29.2015 29.3816 29.1631C29.5371 28.7201 29.6641 28.2509 29.8605 27.825C30.3654 26.7408 30.8898 25.6706 31.4355 24.6036C32.2454 23.0234 32.6234 21.3547 32.4312 19.5761C32.3632 18.892 32.1003 18.7644 31.4907 19.0502C30.0624 19.709 29.0511 20.8343 28.1418 22.0731C27.1107 23.4669 26.6732 25.0287 26.8964 26.747C27.0011 27.5453 27.1834 28.334 27.2988 29.1339C27.402 29.8017 27.1377 30.3148 26.5608 30.6709C25.491 31.3309 24.4319 31.9925 23.3548 32.6296C23.1759 32.7323 22.9284 32.7157 22.7152 32.7587C22.7072 32.5293 22.6176 32.2656 22.7002 32.0829C23.0856 31.2083 23.4711 30.3338 23.9471 29.5058C24.8804 27.9014 25.3107 26.1756 25.1937 24.3325C25.1567 23.7293 25.0542 23.1268 24.8938 22.548C24.7448 22.0361 24.4255 21.9215 24.0037 22.2581C23.4471 22.6934 22.9248 23.1883 22.4718 23.7265C22.0328 24.2451 21.7097 24.8577 21.3277 25.4286C20.5484 26.6007 20.1961 27.8932 20.3485 29.2964C20.5156 30.7453 20.739 32.1812 20.9412 33.6138C21.0029 34.0579 20.9405 34.461 20.6299 34.7823C19.281 36.1921 17.9215 37.6002 16.5547 38.9854C16.3348 39.2121 16.0128 39.3252 15.699 39.5265C15.6665 39.3151 15.616 39.2203 15.6291 39.1355C15.7293 38.4883 15.7976 37.8363 15.9811 37.2129C16.493 35.5215 16.8636 33.8299 16.6502 32.0479C16.5309 31.0626 16.2973 30.114 15.8594 29.2206C15.6205 28.7274 15.302 28.6781 14.9072 29.0515C14.7535 29.2015 14.6284 29.3776 14.5033 29.5538C13.0551 31.5348 12.2789 33.7393 12.352 36.2166C12.3956 37.831 12.7791 39.3569 13.4673 40.8104C13.7535 41.4196 13.8012 42.0245 13.4266 42.6183C12.8386 43.5375 12.2505 44.4567 11.6429 45.3621C11.4744 45.6075 11.2186 45.7852 11.002 45.9907C10.9506 45.9718 10.9081 45.9653 10.8567 45.9464C10.7752 45.6297 10.662 45.308 10.6353 44.9888C10.4396 42.6012 9.97428 40.2697 9.08988 38.0471C8.81518 37.3637 8.34357 36.7584 7.94222 36.1205C7.77663 35.8559 7.57731 35.8793 7.4268 36.1493C7.05462 36.7978 6.54607 37.4143 6.35109 38.1119C5.97998 39.4558 5.76484 40.8456 5.51948 42.2198C5.36029 43.1076 5.487 43.9745 5.90782 44.7675C6.63037 46.1395 7.6014 47.3109 8.93781 48.1587C9.56234 48.5487 9.67966 48.9145 9.41201 49.59C9.10834 50.3577 8.8153 51.1271 8.51328 51.8842C8.10157 52.9285 7.70212 53.9638 7.27082 54.9942C7.20371 55.1468 6.9929 55.2445 6.85312 55.3749C6.73481 55.2262 6.54786 55.0995 6.50879 54.9306C6.40538 54.5452 6.34936 54.1346 6.31293 53.7379C6.06231 50.5814 4.81159 47.8458 2.74377 45.4726C2.35534 45.0323 2.01471 45.0556 1.8215 45.6014C1.55626 46.3316 1.34246 47.0807 1.10742 47.8264C0.989522 48.1667 0.88224 48.5085 0.774958 48.8504L0.638646 49.7309C0.650789 49.8632 0.685808 49.9881 0.688977 50.1081C0.634333 52.9892 1.70732 55.3279 4.02724 57.0557C4.46559 57.3843 4.95791 57.6452 5.42406 57.9346C5.98085 58.2707 6.15606 58.754 6.02567 59.3856C5.74278 60.7214 5.47947 62.0711 5.22679 63.4225C4.99786 64.6906 4.77955 65.9604 4.57185 67.2318C4.42164 68.1319 4.83524 68.7608 5.60512 69.195C6.1456 69.4959 6.63016 69.245 6.69357 68.6248C6.74876 68.0576 6.79498 67.4782 6.87305 66.9037C7.16309 64.8194 7.44087 62.7441 7.76277 60.6648C7.88758 59.8585 8.16867 59.7283 8.94688 59.9682C9.88107 60.2541 10.8308 60.5097 11.8037 60.3344C12.7326 60.1632 13.6583 59.872 14.5537 59.5652C16.7458 58.8183 18.463 57.4873 19.507 55.3785C19.6158 55.1672 19.6927 54.951 19.8114 54.6761C19.386 54.545 19.0259 54.4133 18.6453 54.3435C17.3231 54.1062 16.0185 54.317 14.7945 54.7793C13.1098 55.4093 11.4796 56.178 9.81523 56.8872C9.60605 56.9743 9.38955 57.0386 9.17304 57.1028C8.85442 57.1947 8.71487 57.0427 8.73064 56.7302C8.73973 56.6012 8.74718 56.4829 8.78648 56.3695C9.14346 55.3276 9.50045 54.2857 9.87866 53.247C10.1987 52.3732 10.4709 52.2307 11.4084 52.3541C12.0153 52.4372 12.6384 52.5554 13.251 52.5307C16.2332 52.4384 18.7222 51.2486 20.6794 48.9988C21.1569 48.4426 21.5503 47.7974 21.9102 47.1579C22.2407 46.5682 22.0099 46.1631 21.3377 46.0808C21.0388 46.0453 20.7154 46.0279 20.4156 46.0684C17.3065 46.4887 14.4844 47.5835 12.1123 49.7039C11.9741 49.8237 11.7625 49.8561 11.5762 49.9359C11.556 49.7155 11.5374 49.4845 11.5278 49.2658C11.527 49.2005 11.5793 49.1434 11.6104 49.083C12.3811 47.6163 13.1746 46.1423 13.9362 44.6634C14.2798 43.9887 14.8298 43.7371 15.5509 43.7836C16.8096 43.8698 18.0772 43.9683 19.3391 44.0333C20.7512 44.1107 22.1359 43.9448 23.4065 43.2508C24.7475 42.5241 25.7025 41.4119 26.5464 40.1738C26.6715 39.9976 26.7877 39.8092 26.872 39.6158C27.0332 39.2063 26.9101 38.9482 26.4764 38.8702C26.1065 38.8021 25.7332 38.7552 25.3551 38.7401C23.6162 38.6664 22.0075 39.1561 20.4729 39.9396C19.4089 40.4919 18.3287 41.009 17.2485 41.5262C17.0973 41.5897 16.8793 41.5233 16.6939 41.5272C16.7341 41.3379 16.7187 41.0857 16.8356 40.9626C18.3807 39.4093 19.933 37.879 21.4944 36.3609C21.8017 36.0609 22.1791 36.0107 22.6103 36.1752C23.6481 36.564 24.6704 36.9829 25.7353 37.2673C28.4497 37.9917 30.9813 37.5797 33.2363 35.8648C33.7038 35.5135 34.128 35.0904 34.5221 34.6517C34.8221 34.3288 34.695 34.0267 34.3275 33.872Z" fill="#9B8329" />
+                    </svg></span></h1>
+        </div>
+        <?php
+        $show = isset($_GET['show']) ? intval($_GET['show']) : 9;
+        $availability = isset($_GET['availability']) ? $_GET['availability'] : '';
+        $type = isset($_GET['type']) ? $_GET['type'] : '';
+        $property_type = isset($_GET['property_type']) ? $_GET['property_type'] : '';
+        $bedrooms = isset($_GET['bedrooms']) ? $_GET['bedrooms'] : '';
+        $currentPage = isset($_GET['pagination']) ? intval($_GET['pagination']) : 1;
+
+        $more_properties = '';
+        if ($show != 9) {
+            $more_properties = '&show=' . $show;
+        }
+        ?>
+
+        <div class="for_sale-filters" id="listings">
+            <div class="filter">
+                <div class="filter-title">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_3697_42184)">
+                    <path d="M7.50033 10.0003L9.16699 11.667L12.5003 8.33366M18.3337 10.0003C18.3337 14.6027 14.6027 18.3337 10.0003 18.3337C5.39795 18.3337 1.66699 14.6027 1.66699 10.0003C1.66699 5.39795 5.39795 1.66699 10.0003 1.66699C14.6027 1.66699 18.3337 5.39795 18.3337 10.0003Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_3697_42184">
+                    <rect width="20" height="20" fill="white"/>
+                    </clipPath>
+                    </defs>
+                    </svg>
+                    <p>Status</p>
+                </div>
+                <div class="filter-options">
+                    <a data-attr="availability" href="<?php echo build_filter_url('availability', 'available'); ?>" class="filter-button prop <?php echo $availability == 'available' ? 'active' : ''; ?>" data-option="available">Available</a>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="filter-title">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_3699_42179)">
+                    <path d="M10.4887 2.15533C10.1762 1.84274 9.75232 1.66709 9.31033 1.66699H3.33366C2.89163 1.66699 2.46771 1.84259 2.15515 2.15515C1.84259 2.46771 1.66699 2.89163 1.66699 3.33366V9.31033C1.66709 9.75232 1.84274 10.1762 2.15533 10.4887L9.40866 17.742C9.78742 18.1184 10.2997 18.3296 10.8337 18.3296C11.3676 18.3296 11.8799 18.1184 12.2587 17.742L17.742 12.2587C18.1184 11.8799 18.3296 11.3676 18.3296 10.8337C18.3296 10.2997 18.1184 9.78742 17.742 9.40866L10.4887 2.15533Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6.25033 6.66699C6.48044 6.66699 6.66699 6.48044 6.66699 6.25033C6.66699 6.02021 6.48044 5.83366 6.25033 5.83366C6.02021 5.83366 5.83366 6.02021 5.83366 6.25033C5.83366 6.48044 6.02021 6.66699 6.25033 6.66699Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_3699_42179">
+                    <rect width="20" height="20" fill="white"/>
+                    </clipPath>
+                    </defs>
+                    </svg>
+                    <p>Type</p>
+                </div>
+                <div class="filter-options">
+                    <a data-attr="type" href="<?php echo build_filter_url('type', 'sales'); ?>" class="filter-button prop <?php echo $type == 'sales' ? 'active' : ''; ?>" data-option="sales">Sales</a>
+                    <a data-attr="type" href="<?php echo build_filter_url('type', 'rental'); ?>" class="filter-button prop <?php echo $type == 'rental' ? 'active' : ''; ?>" data-option="rental">Rental</a>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="filter-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M12.5 17.5V10.8333C12.5 10.6123 12.4122 10.4004 12.2559 10.2441C12.0996 10.0878 11.8877 10 11.6667 10H8.33333C8.11232 10 7.90036 10.0878 7.74408 10.2441C7.5878 10.4004 7.5 10.6123 7.5 10.8333V17.5M2.5 8.33335C2.49994 8.0909 2.55278 7.85137 2.65482 7.63144C2.75687 7.41152 2.90566 7.21651 3.09083 7.06001L8.92417 2.06085C9.22499 1.8066 9.60613 1.66711 10 1.66711C10.3939 1.66711 10.775 1.8066 11.0758 2.06085L16.9092 7.06001C17.0943 7.21651 17.2431 7.41152 17.3452 7.63144C17.4472 7.85137 17.5001 8.0909 17.5 8.33335V15.8333C17.5 16.2754 17.3244 16.6993 17.0118 17.0119C16.6993 17.3244 16.2754 17.5 15.8333 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0119C2.67559 16.6993 2.5 16.2754 2.5 15.8333V8.33335Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <p>Property Type</p>
+                </div>
+                <div class="filter-options">
+                    <?php if (!empty($bedrooms)): ?>
+                        <a data-attr="property_type" href="<?php echo build_filter_url('property_type', 'detached'); ?>" class="filter-button prop <?php echo $property_type == 'detached' ? 'active' : ''; ?>" data-option="detached">Detached</a>
+                        <a data-attr="property_type" href="<?php echo build_filter_url('property_type', 'semi-detached'); ?>" class="filter-button prop <?php echo $property_type == 'semi-detached' ? 'active' : ''; ?>" data-option="semi-detached">Semi-detached</a>
+                        <a data-attr="property_type" href="<?php echo build_filter_url('property_type', 'terraced'); ?>" class="filter-button prop <?php echo $property_type == 'terraced' ? 'active' : ''; ?>" data-option="terraced">Terraced</a>
+                        <a data-attr="property_type" href="<?php echo build_filter_url('property_type', 'end-of-terrace'); ?>" class="filter-button prop <?php echo $property_type == 'end-of-terrace' ? 'active' : ''; ?>" data-option="end-of-terrace">End of Terrace</a>
+                        <a data-attr="property_type" href="<?php echo build_filter_url('property_type', 'flat'); ?>" class="filter-button prop <?php echo $property_type == 'flat' ? 'active' : ''; ?>" data-option="flat">Flat</a>
+                    <?php else: ?>
+                        <a data-attr="property_type" href="<?php echo build_filter_url('property_type', 'detached'); ?>" class="filter-button prop <?php echo $property_type == 'detached' ? 'active' : ''; ?>" data-option="detached">Detached</a>
+                        <a data-attr="property_type" href="<?php echo build_filter_url('property_type', 'semi-detached'); ?>" class="filter-button prop <?php echo $property_type == 'semi-detached' ? 'active' : ''; ?>" data-option="semi-detached">Semi-detached</a>
+                        <a data-attr="property_type" href="<?php echo build_filter_url('property_type', 'terraced'); ?>" class="filter-button prop <?php echo $property_type == 'terraced' ? 'active' : ''; ?>" data-option="terraced">Terraced</a>
+                        <a data-attr="property_type" href="<?php echo build_filter_url('property_type', 'end-of-terrace'); ?>" class="filter-button prop <?php echo $property_type == 'end-of-terrace' ? 'active' : ''; ?>" data-option="end-of-terrace">End of Terrace</a>
+                        <a data-attr="property_type" href="<?php echo build_filter_url('property_type', 'flat'); ?>" class="filter-button prop <?php echo $property_type == 'flat' ? 'active' : ''; ?>" data-option="flat">Flat</a>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="filter">
+                <div class="filter-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M1.66602 3.33337V16.6667M1.66602 6.66671H16.666C17.108 6.66671 17.532 6.8423 17.8445 7.15486C18.1571 7.46742 18.3327 7.89135 18.3327 8.33337V16.6667M1.66602 14.1667H18.3327M4.99935 6.66671V14.1667" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <p>Bedrooms</p>
+                </div>
+                <div class="filter-options">
+                    <?php if (!empty($property_type)): ?>
+                        <a data-attr="bedrooms" href="<?php echo build_filter_url('bedrooms', '1-2'); ?>" class="filter-button bedr <?php echo $bedrooms == '1-2' ? 'active' : ''; ?>" data-option="1-2">1-2</a>
+                        <a data-attr="bedrooms" href="<?php echo build_filter_url('bedrooms', '3-4'); ?>" class="filter-button bedr <?php echo $bedrooms == '3-4' ? 'active' : ''; ?>" data-option="3-4">3-4</a>
+                        <a data-attr="bedrooms" href="<?php echo build_filter_url('bedrooms', '5'); ?>" class="filter-button bedr <?php echo $bedrooms == '5' ? 'active' : ''; ?>" data-option="5+">5+</a>
+                    <?php else: ?>
+                        <a data-attr="bedrooms" href="<?php echo build_filter_url('bedrooms', '1-2'); ?>"  class="filter-button bedr <?php echo $bedrooms == '1-2' ? 'active' : ''; ?>" data-option="1-2">1-2</a>
+                        <a data-attr="bedrooms" href="<?php echo build_filter_url('bedrooms', '3-4'); ?>" class="filter-button bedr <?php echo $bedrooms == '3-4' ? 'active' : ''; ?>" data-option="3-4">3-4</a>
+                        <a data-attr="bedrooms" href="<?php echo build_filter_url('bedrooms', '5'); ?>" class="filter-button bedr <?php echo $bedrooms == '5' ? 'active' : ''; ?>" data-option="5+">5+</a>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <?php get_search_form(); ?>
+        </div>
+        <div class="for_sale-list" data-bedrooms="" data-property-type="">
+            <?php get_properties_grid($currentPage, '', $show, $bedrooms, $property_type, $availability,0,$type); ?>
+        </div>
+    </div>
+</section>
+
+<section class="register">
+    <div class="spacing container"></div>
+    <div class="container">
+        <div class="register_box">
+            <h2>Register with Laurels to have exclusive access to our off market properties<span>.</span></h2>
+            <a href="<?php echo esc_url(home_url('get-in-touch')) ?>?offmarket" title="Register Here">Register Here</a>
+        </div>
+    </div>
+</section>
+
+<?php get_template_part('inc/sections/get_valuation'); ?>
+
+<?php get_footer(); ?>
+
+<script>
+    let filterActives = document.querySelectorAll('.filter-button.active');
+    if(filterActives){
+        Array.from(filterActives).forEach(filter => {
+            filter.addEventListener('click', (e) => {
+                e.preventDefault();
+    
+                // Obtener atributos del filtro activado
+                const option = e.currentTarget.getAttribute('data-option');
+                const attr = e.currentTarget.getAttribute('data-attr');
+    
+                // Manipular la URL
+                const url = new URL(window.location.href);
+                const params = url.searchParams;
+    
+                // Eliminar el filtro de los parámetros de la URL
+                params.delete(attr);
+    
+                // Recargar la página con la nueva URL
+                window.location.href = url.toString();
+            });
+        });
+    }
+</script>
+
+<?php if (!empty($_GET)): ?>
+    <script>
+		document.addEventListener('DOMContentLoaded', function () {
+    		const target = document.querySelector('#listings');
+    		if (target) {
+      			const offset = -150;
+      			const topPos = target.getBoundingClientRect().top + window.pageYOffset + offset;
+      			window.scrollTo({ top: topPos, behavior: 'smooth' });
+    		}
+  		});
+    </script>
+<?php endif; ?>

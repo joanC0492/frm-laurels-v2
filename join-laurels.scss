@@ -1,0 +1,1301 @@
+@use "src/scss/base/mixins" as m;
+@use "src/scss/base/variables" as v;
+// ==========================================================================
+// Join Laurels — page-template/join-laurels.php
+// Compilar: sass join-laurels.scss join-laurels.css
+// ==========================================================================
+
+// ==========================================================================
+// HERO
+// ==========================================================================
+
+// .join-laurels {
+//   & > section {
+//     min-height: 559.32px;
+//   }
+// }
+
+.join-hero {
+  position: relative;
+  overflow: hidden;
+  background: v.$black;
+
+  @media (min-width: v.$laptop) {
+    min-height: m.px-to-vw(620px);
+    height: 100dvh;
+  }
+
+  @include m.laptop {
+    // min-height: 500px;
+    // min-height: 620px;
+    height: auto;
+  }
+
+  @include m.tablet {
+    // min-height: 380px;
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  &__container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    @media (min-width: v.$laptop) {
+      // padding-block: m.px-to-vw(80px) m.px-to-vw(60px);
+      padding-block: m.px-to-vw(110px) m.px-to-vw(55px);
+      min-height: m.px-to-vw(620px);
+    }
+
+    @include m.laptop {
+      padding-block: 94px 48px;
+      min-height: 620px;
+    }
+
+    @include m.tablet {
+      padding-block: 120px 36px;
+    }
+  }
+
+  &__top {
+    @include m.flex(flex-start, 0);
+    flex-direction: column;
+  }
+
+  &__title {
+    color: v.$white;
+    font-weight: 800;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(96px);
+      line-height: 1em;
+      letter-spacing: m.px-to-vw(-3px);
+    }
+
+    @include m.laptop {
+      font-size: 72px;
+      letter-spacing: -2px;
+    }
+
+    @include m.notebook {
+      font-size: 58px;
+    }
+
+    @include m.tablet {
+      font-size: 40px;
+      letter-spacing: -1px;
+    }
+  }
+
+  &__subtitle {
+    color: v.$white;
+    font-weight: 500;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(26px);
+      margin-top: m.px-to-vw(10px);
+    }
+
+    @include m.laptop {
+      font-size: 20px;
+      margin-top: 8px;
+    }
+
+    @include m.tablet {
+      font-size: 16px;
+    }
+  }
+
+  &__bottom {
+    @include m.flex(space-between, 0);
+    align-items: flex-end;
+    width: 100%;
+
+    @media (min-width: v.$laptop) {
+      margin-top: m.px-to-vw(48px);
+    }
+
+    @include m.laptop {
+      margin-top: 32px;
+    }
+  }
+
+  &__tagline {
+    color: v.$white;
+    font-weight: 500;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(17px);
+      line-height: 1.6em;
+    }
+
+    @include m.laptop {
+      font-size: 14px;
+    }
+  }
+
+  &__logo {
+    display: block;
+    object-fit: contain;
+
+    @media (min-width: v.$laptop) {
+      width: m.px-to-vw(160px);
+    }
+
+    @include m.laptop {
+      width: 130px;
+    }
+
+    @include m.tablet {
+      width: 100px;
+    }
+  }
+}
+
+// ==========================================================================
+// SECTION 02 — About Laurels (dark)
+// ==========================================================================
+
+.join-section-02 {
+  background: v.$black;
+  position: relative;
+  overflow: hidden;
+
+  @media (min-width: v.$laptop) {
+    padding-block: m.px-to-vw(80px);
+  }
+
+  @include m.laptop {
+    padding-block: 64px;
+  }
+
+  &__leaf {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    object-position: left top;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+
+    @include m.tablet {
+      display: none;
+    }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__grid {
+    @media (min-width: v.$laptop) {
+      @include m.grid(2, m.px-to-vw(48px));
+      grid-template-columns: 1fr m.px-to-vw(540px);
+      align-items: center;
+    }
+
+    @include m.laptop {
+      @include m.grid(2, 36px);
+      grid-template-columns: 1fr 420px;
+      align-items: center;
+    }
+
+    @include m.tabletlg {
+      grid-template-columns: 100%;
+    }
+  }
+
+  &__content {
+    @include m.flex(flex-start, 0);
+    flex-direction: column;
+  }
+
+  &__icon {
+    display: block;
+    object-fit: contain;
+
+    @media (min-width: v.$laptop) {
+      width: m.px-to-vw(48px);
+      margin-bottom: m.px-to-vw(28px);
+    }
+
+    @include m.laptop {
+      width: 36px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__title {
+    color: v.$white;
+    font-weight: 700;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(22px);
+      line-height: 1.5em;
+      margin-bottom: m.px-to-vw(24px);
+    }
+
+    @include m.laptop {
+      font-size: 18px;
+      margin-bottom: 18px;
+    }
+  }
+
+  &__text {
+    p {
+      @include m.body(v.$white);
+      margin: 0;
+
+      @media (min-width: v.$laptop) {
+        margin-bottom: m.px-to-vw(16px);
+      }
+
+      @include m.laptop {
+        margin-bottom: 12px;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__image {
+    width: 100%;
+
+    @include m.tabletlg {
+      order: -1;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      @media (min-width: v.$laptop) {
+        // max-height: m.px-to-vw(560px);
+        max-height: m.px-to-vw(768px);
+      }
+
+      @include m.laptop {
+        max-height: 460px;
+      }
+
+      @include m.tabletlg {
+        max-height: 300px;
+      }
+    }
+  }
+}
+
+// ==========================================================================
+// SECTION 03 — Why Laurels (beige / 3 columnas)
+// ==========================================================================
+
+.join-section-03 {
+  background: #e0ded9;
+  position: relative;
+  overflow: hidden;
+
+  &__leaf {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    object-position: left top;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+
+    @include m.tablet {
+      display: none;
+    }
+  }
+
+  &__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    align-items: stretch;
+    grid-template-columns: 1fr 1fr;
+    @media (min-width: v.$laptop) {
+      // grid-template-columns: 1fr m.px-to-vw(300px) m.px-to-vw(300px);
+      // grid-template-columns: 1fr m.px-to-vw(300px);
+    }
+
+    @include m.laptop {
+      // grid-template-columns: 1fr 240px 240px;
+      // grid-template-columns: 1fr 240px;
+    }
+    @include m.tabletlg {
+      grid-template-columns: 100%;
+    }
+  }
+
+  &__left {
+    @media (min-width: v.$laptop) {
+      padding: m.px-to-vw(80px) m.px-to-vw(40px) m.px-to-vw(80px)
+        calc((100vw - 94.444vw) / 2 + m.px-to-vw(20px));
+    }
+
+    @include m.laptop {
+      padding: 64px 28px 64px 4%;
+    }
+
+    @include m.tabletlg {
+      padding: 48px 4%;
+    }
+  }
+
+  &__title {
+    @include m.h2(v.$black);
+    font-weight: 800;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(42px);
+      margin-bottom: m.px-to-vw(20px);
+    }
+
+    @include m.laptop {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__text {
+    p {
+      @include m.body(v.$black);
+      margin: 0;
+
+      @media (min-width: v.$laptop) {
+        margin-bottom: m.px-to-vw(14px);
+      }
+
+      @include m.laptop {
+        margin-bottom: 10px;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__list {
+    list-style: disc;
+    padding-left: 22px;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      margin-block: m.px-to-vw(12px);
+    }
+
+    @include m.laptop {
+      margin-block: 10px;
+    }
+
+    li {
+      @include m.body(v.$black);
+
+      @media (min-width: v.$laptop) {
+        margin-bottom: m.px-to-vw(4px);
+      }
+
+      @include m.laptop {
+        margin-bottom: 3px;
+      }
+    }
+  }
+
+  &__media {
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    @include m.tabletlg {
+      height: 280px;
+    }
+  }
+
+  &__vision {
+    background: v.$green;
+    @include m.flex(center, 0);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    @media (min-width: v.$laptop) {
+      padding: m.px-to-vw(48px) m.px-to-vw(32px);
+      gap: m.px-to-vw(24px);
+    }
+
+    @include m.laptop {
+      padding: 40px 24px;
+      gap: 18px;
+    }
+
+    @include m.tabletlg {
+      padding: 40px 5%;
+    }
+  }
+
+  &__vision-icon {
+    display: block;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+
+    @media (min-width: v.$laptop) {
+      width: m.px-to-vw(44px);
+    }
+
+    @include m.laptop {
+      width: 34px;
+    }
+  }
+
+  &__vision-text {
+    color: v.$white;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(18px);
+      line-height: 1.6em;
+    }
+
+    @include m.laptop {
+      font-size: 15px;
+      line-height: 1.5em;
+    }
+  }
+}
+
+// ==========================================================================
+// SECTION 04 — How It Works (beige, 2 columnas)
+// ==========================================================================
+
+.join-section-04 {
+  background: #e0ded9;
+  position: relative;
+  overflow: hidden;
+
+  &__grid {
+    display: grid;
+    align-items: stretch;
+
+    @media (min-width: v.$laptop) {
+      grid-template-columns: m.px-to-vw(560px) 1fr;
+    }
+
+    @include m.laptop {
+      grid-template-columns: 420px 1fr;
+    }
+
+    @include m.tabletlg {
+      grid-template-columns: 100%;
+    }
+  }
+
+  &__image {
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    @include m.tabletlg {
+      height: 300px;
+    }
+  }
+
+  &__content {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__leaf {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    object-position: right top;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+
+    @include m.tablet {
+      display: none;
+    }
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+
+    @media (min-width: v.$laptop) {
+      padding: m.px-to-vw(80px) calc((100vw - 94.444vw) / 2 + m.px-to-vw(20px))
+        m.px-to-vw(80px) m.px-to-vw(56px);
+    }
+
+    @include m.laptop {
+      padding: 64px 4% 64px 40px;
+    }
+
+    @include m.tabletlg {
+      padding: 48px 5%;
+    }
+  }
+
+  &__title {
+    @include m.h2(v.$black);
+    font-weight: 800;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(42px);
+      margin-bottom: m.px-to-vw(20px);
+    }
+
+    @include m.laptop {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__text {
+    p {
+      @include m.body(v.$black);
+      margin: 0;
+
+      @media (min-width: v.$laptop) {
+        margin-bottom: m.px-to-vw(14px);
+      }
+
+      @include m.laptop {
+        margin-bottom: 10px;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__subtitle {
+    @include m.h3(v.$black);
+    font-weight: 800;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(28px);
+      margin-top: m.px-to-vw(28px);
+      margin-bottom: m.px-to-vw(12px);
+    }
+
+    @include m.laptop {
+      font-size: 22px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__list {
+    list-style: disc;
+    padding-left: 22px;
+    margin: 0;
+
+    li {
+      @include m.body(v.$black);
+
+      @media (min-width: v.$laptop) {
+        margin-bottom: m.px-to-vw(6px);
+      }
+
+      @include m.laptop {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
+
+// ==========================================================================
+// SECTION 05 — What's In It For You (dark, 2 columnas)
+// ==========================================================================
+
+.join-section-05 {
+  background: v.$black;
+  position: relative;
+  overflow: hidden;
+
+  &__grid {
+    display: grid;
+    align-items: stretch;
+
+    @media (min-width: v.$laptop) {
+      grid-template-columns: m.px-to-vw(560px) 1fr;
+    }
+
+    @include m.laptop {
+      grid-template-columns: 400px 1fr;
+    }
+
+    @include m.tabletlg {
+      grid-template-columns: 100%;
+    }
+  }
+
+  &__image {
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    @include m.tabletlg {
+      height: 280px;
+    }
+  }
+
+  &__content {
+    @media (min-width: v.$laptop) {
+      padding: m.px-to-vw(64px) calc((100vw - 94.444vw) / 2 + m.px-to-vw(20px))
+        m.px-to-vw(64px) m.px-to-vw(56px);
+    }
+
+    @include m.laptop {
+      padding: 48px 4% 48px 36px;
+    }
+
+    @include m.tabletlg {
+      padding: 48px 5%;
+    }
+  }
+
+  &__title {
+    @include m.h2(v.$white);
+    font-weight: 800;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(38px);
+      margin-bottom: m.px-to-vw(20px);
+    }
+
+    @include m.laptop {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      margin-bottom: m.px-to-vw(12px);
+    }
+
+    @include m.laptop {
+      margin-bottom: 10px;
+    }
+
+    li {
+      @include m.body(v.$white);
+      display: grid;
+      align-items: start;
+
+      @media (min-width: v.$laptop) {
+        grid-template-columns: m.px-to-vw(22px) 1fr;
+        gap: m.px-to-vw(8px);
+        margin-bottom: m.px-to-vw(8px);
+      }
+
+      @include m.laptop {
+        grid-template-columns: 18px 1fr;
+        gap: 6px;
+        margin-bottom: 6px;
+      }
+
+      &::before {
+        content: "";
+        display: block;
+        border: 1.5px solid v.$white;
+        flex-shrink: 0;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10'%3E%3Cpath d='M1 5l3.5 3.5L11 1' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+          no-repeat center / 65%;
+        margin-top: 2px;
+
+        @media (min-width: v.$laptop) {
+          width: m.px-to-vw(20px);
+          height: m.px-to-vw(20px);
+        }
+
+        @include m.laptop {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  &__note-inline {
+    @include m.caption(v.$white, 12px);
+    display: inline;
+    opacity: 0.75;
+  }
+
+  &__footnote {
+    @include m.caption(v.$white, 12px);
+    font-style: italic;
+    margin: 0;
+    opacity: 0.85;
+
+    @media (min-width: v.$laptop) {
+      margin-bottom: m.px-to-vw(20px);
+    }
+
+    @include m.laptop {
+      margin-bottom: 14px;
+    }
+  }
+
+  &__subtitle {
+    @include m.h3(v.$white);
+    font-weight: 800;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(24px);
+      margin-bottom: m.px-to-vw(14px);
+      margin-top: m.px-to-vw(4px);
+    }
+
+    @include m.laptop {
+      font-size: 20px;
+      margin-bottom: 12px;
+      margin-top: 4px;
+    }
+  }
+}
+
+// ==========================================================================
+// SECTION 06 — Costs & Earnings (gris claro)
+// ==========================================================================
+
+.join-section-06 {
+  background: v.$gray;
+
+  @media (min-width: v.$laptop) {
+    padding-block: m.px-to-vw(80px);
+  }
+
+  @include m.laptop {
+    padding-block: 60px;
+  }
+
+  &__title {
+    @include m.h2(v.$black);
+    font-weight: 800;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(52px);
+      margin-bottom: m.px-to-vw(32px);
+    }
+
+    @include m.laptop {
+      font-size: 38px;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__table-wrap {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1.5px solid v.$black;
+
+    th,
+    td {
+      border: 1.5px solid v.$black;
+      text-align: center;
+      vertical-align: middle;
+
+      @media (min-width: v.$laptop) {
+        padding: m.px-to-vw(20px) m.px-to-vw(16px);
+        font-size: m.px-to-vw(15px);
+        line-height: 1.5em;
+      }
+
+      @include m.laptop {
+        padding: 16px 12px;
+        font-size: 13px;
+      }
+    }
+
+    th {
+      font-weight: 600;
+      background: transparent;
+
+      &:first-child {
+        background: transparent;
+      }
+    }
+
+    tbody tr:first-child td:first-child,
+    tbody tr:nth-child(3) td:first-child,
+    tbody tr:nth-child(4) td:first-child {
+      text-align: left;
+    }
+
+    tbody tr td:first-child {
+      text-align: left;
+      font-weight: 700;
+
+      @media (min-width: v.$laptop) {
+        padding-left: m.px-to-vw(20px);
+      }
+    }
+
+    td[colspan] {
+      text-align: center;
+
+      em {
+        display: block;
+        font-style: italic;
+        opacity: 0.75;
+      }
+    }
+
+    @include m.tablet {
+      min-width: 540px;
+    }
+  }
+
+  &__footnote {
+    @include m.caption(v.$black, 13px);
+    font-style: italic;
+    text-align: right;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      margin-top: m.px-to-vw(16px);
+    }
+
+    @include m.laptop {
+      margin-top: 12px;
+    }
+  }
+}
+
+// ==========================================================================
+// SECTION 07 — Location & Training (beige, 2 columnas)
+// ==========================================================================
+
+.join-section-07 {
+  background: v.$yellow;
+  position: relative;
+  overflow: hidden;
+
+  &__leaf {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    object-position: right top;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+
+    @include m.tablet {
+      display: none;
+    }
+  }
+
+  &__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    align-items: stretch;
+
+    @media (min-width: v.$laptop) {
+      grid-template-columns: m.px-to-vw(540px) 1fr;
+    }
+
+    @include m.laptop {
+      grid-template-columns: 400px 1fr;
+    }
+
+    @include m.tabletlg {
+      grid-template-columns: 100%;
+    }
+  }
+
+  &__image {
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    @include m.tabletlg {
+      height: 280px;
+    }
+  }
+
+  &__content {
+    @media (min-width: v.$laptop) {
+      padding: m.px-to-vw(64px) calc((100vw - 94.444vw) / 2 + m.px-to-vw(20px))
+        m.px-to-vw(64px) m.px-to-vw(56px);
+    }
+
+    @include m.laptop {
+      padding: 48px 4% 48px 36px;
+    }
+
+    @include m.tabletlg {
+      padding: 48px 5%;
+    }
+  }
+
+  &__icon {
+    display: block;
+    object-fit: contain;
+    margin-bottom: 0;
+
+    @media (min-width: v.$laptop) {
+      width: m.px-to-vw(44px);
+      margin-bottom: m.px-to-vw(28px);
+    }
+
+    @include m.laptop {
+      width: 34px;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__block {
+    @media (min-width: v.$laptop) {
+      margin-bottom: m.px-to-vw(28px);
+    }
+
+    @include m.laptop {
+      margin-bottom: 20px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__block-title {
+    @include m.h3(v.$black);
+    font-weight: 700;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(20px);
+      margin-bottom: m.px-to-vw(8px);
+    }
+
+    @include m.laptop {
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+  }
+
+  p {
+    @include m.body(v.$black);
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      margin-bottom: m.px-to-vw(10px);
+    }
+
+    @include m.laptop {
+      margin-bottom: 8px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ==========================================================================
+// SECTION 08 — Ready to Get Started (gris claro)
+// ==========================================================================
+
+.join-section-08 {
+  background: v.$gray;
+  position: relative;
+  overflow: hidden;
+
+  &__image-wrap {
+    width: 100%;
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+
+      @media (min-width: v.$laptop) {
+        max-height: m.px-to-vw(420px);
+      }
+
+      @include m.laptop {
+        max-height: 340px;
+      }
+
+      @include m.tablet {
+        max-height: 240px;
+      }
+    }
+  }
+
+  &__leaf {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: auto;
+    height: 55%;
+    object-fit: contain;
+    object-position: left bottom;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+
+    @include m.tablet {
+      display: none;
+    }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__content {
+    @media (min-width: v.$laptop) {
+      padding-block: m.px-to-vw(60px);
+    }
+
+    @include m.laptop {
+      padding-block: 48px;
+    }
+
+    p {
+      @include m.body(v.$black);
+      margin: 0;
+
+      @media (min-width: v.$laptop) {
+        margin-bottom: m.px-to-vw(12px);
+      }
+
+      @include m.laptop {
+        margin-bottom: 10px;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__title {
+    @include m.h2(v.$black);
+    font-weight: 800;
+    text-align: center;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(52px);
+      margin-bottom: m.px-to-vw(24px);
+    }
+
+    @include m.laptop {
+      font-size: 38px;
+      margin-bottom: 18px;
+    }
+  }
+
+  &__steps {
+    padding-left: 22px;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      margin-block: m.px-to-vw(12px);
+    }
+
+    @include m.laptop {
+      margin-block: 10px;
+    }
+
+    li {
+      @include m.body(v.$black);
+
+      @media (min-width: v.$laptop) {
+        margin-bottom: m.px-to-vw(6px);
+      }
+
+      @include m.laptop {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  &__contact {
+    text-align: center;
+    font-weight: 700;
+
+    @media (min-width: v.$laptop) {
+      margin-top: m.px-to-vw(24px) !important;
+    }
+
+    @include m.laptop {
+      margin-top: 18px !important;
+    }
+  }
+}
+
+// ==========================================================================
+// SECTION 09 — CTA Final (negro)
+// ==========================================================================
+
+.join-section-09 {
+  background: v.$black;
+  position: relative;
+  overflow: hidden;
+
+  @media (min-width: v.$laptop) {
+    padding-block: m.px-to-vw(100px);
+    height: calc(100dvh - m.px-to-vw(65px));
+    display: flex;
+    align-items: center;
+  }
+
+  @include m.laptop {
+    padding-block: 80px;
+    height: 520px;
+  }
+
+  @include m.tablet {
+    padding-block: 60px;
+  }
+
+  &__leaf {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    object-position: left top;
+    opacity: 0.25;
+    pointer-events: none;
+    z-index: 0;
+
+    @include m.tablet {
+      height: 60%;
+    }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__content {
+    @include m.flex(center, 0);
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    @media (min-width: v.$laptop) {
+      gap: m.px-to-vw(14px);
+    }
+
+    @include m.laptop {
+      gap: 10px;
+    }
+  }
+
+  &__title {
+    @include m.h2(v.$white);
+    font-weight: 700;
+    text-align: center;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(42px);
+      line-height: 1.2em;
+    }
+
+    @include m.laptop {
+      font-size: 30px;
+    }
+
+    @include m.tablet {
+      font-size: 22px;
+    }
+  }
+
+  &__subtitle {
+    @include m.body(v.$white);
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+
+    @media (min-width: v.$laptop) {
+      font-size: m.px-to-vw(18px);
+    }
+
+    @include m.laptop {
+      font-size: 15px;
+    }
+  }
+}

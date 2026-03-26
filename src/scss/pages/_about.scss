@@ -1,0 +1,445 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.process, .what_makes_us{
+    @include m.above;
+    @media (min-width: v.$laptop){
+        padding-block: m.px-to-vw(112px) m.px-to-vw(80px);
+    }
+    @include m.laptop{
+        padding-block: 82px 50px;
+    }
+    @include m.tablet{
+        padding-block: 52px 32px;
+    }
+}
+
+.what_makes_us{
+    &-tag{
+        @include m.tag(17px);
+        position: relative;
+        opacity: 0;
+        @include m.transition(1.2s);
+
+        @media (min-width: v.$laptop){
+            bottom: m.px-to-vw(-40px);
+        }
+        @include m.laptop{
+            bottom: -40px;
+        }
+    }
+    &-titles{
+        overflow: hidden;
+        @include m.transition(1.5s);
+
+        @media (min-width: v.$laptop){
+            margin-top: m.px-to-vw(48px);
+        }
+        @include m.laptop{
+            margin-top: 36px;
+        }
+
+        @media (min-width: v.$notebook){
+            width: 0%;
+        }
+        h2{
+            @media (min-width: v.$notebook){
+                opacity: 0;
+            }
+
+            @include m.h3;
+            @include m.transition(.5s);
+
+            @media (min-width: v.$laptop){
+                width: m.px-to-vw(890px);
+            }
+            @include m.laptop{
+                width: 620px;
+            }
+            @include m.notebook{
+                width: 100%;
+            }
+
+            &:not(:last-child){
+                @media (min-width: v.$laptop){
+                    margin-bottom: m.px-to-vw(35px);
+                }
+                @include m.laptop{
+                    margin-bottom: 24px;
+                }
+            }
+
+            br{
+                @include m.tablet{
+                    display: none;
+                }
+            }
+        }
+    }
+    &-partners{
+        .what_makes_us{
+            &-titles{
+                h2{
+                    @media (min-width: v.$laptop){
+                        width: m.px-to-vw(960px);
+                    }
+                    @include m.laptop{
+                        width: 680px;
+                    }
+                    @include m.tablet{
+                        width: 100%;
+                    }
+                    
+                    b{
+                        font-weight: 500 !important;
+                    }
+                } 
+            }
+        }
+    }
+    &.in_animation_progress{
+        .what_makes_us{
+            &-tag{
+                opacity: 1;
+                bottom: 0;
+            }
+            &-titles{
+                @media (min-width: v.$notebook){
+                    width: 100%;
+                }
+                h2{
+                    @media (min-width: v.$notebook){
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.our_team{
+    &-list{
+        @media (min-width: v.$laptop){
+            @include m.grid(4, m.px-to-vw(40px) m.px-to-vw(24px));
+        }
+        @include m.laptop{
+            @include m.grid(3, 28px 18px);
+        }
+        @media (max-width: 950px){
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: 520px){
+            grid-template-columns: 100%;
+        }
+
+        .member_card{
+            @include m.laptop{
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+.our_team{
+    &.about_page{
+        @media (min-width: v.$laptop){
+            padding-block: m.px-to-vw(120px) m.px-to-vw(80px);
+        }
+        @include m.laptop{
+            padding-block: 84px 45px;
+        }
+    }   
+}
+
+.our_specialism, .accolades{
+    &_title{
+        @media (min-width: v.$laptop){
+            margin-bottom: m.px-to-vw(40px);
+        }
+        @include m.laptop{
+            margin-bottom: 28px;
+        }
+        @include m.tablet{
+            margin-bottom: 24px;
+        }
+    }
+}
+
+.accolades{
+    @include m.above;
+
+    @media (min-width: v.$laptop){
+        padding-block: m.px-to-vw(100px) m.px-to-vw(120px);
+    }
+    @include m.laptop{
+        padding-block: 70px 90px;
+    }
+    @include m.tablet{
+        padding-block: 40px 50px;
+    }
+
+    &_table{
+        width: 100%;
+
+        &-tr{
+            width: 100%;
+            display: grid;
+            @media (min-width: v.$laptop){
+                padding-block: m.px-to-vw(24px);
+                grid-template-columns: m.px-to-vw(231px) 1fr m.px-to-vw(322px);
+                border-bottom: m.px-to-vw(1px) solid rgba($color: v.$black, $alpha: 0.1);
+            }
+            @include m.laptop{
+                padding-block: 18px;
+                grid-template-columns: 190px 1fr 265px;
+                border-bottom: 1px solid rgba($color: v.$black, $alpha: 0.1);
+            }
+            @include m.tabletlg{
+                grid-template-columns: 100px 1fr 225px;
+            }
+            @include m.tablet{
+                padding-block: 17px 11px;
+                grid-template-columns: 100%;
+            }
+            align-items: center;
+
+            &:first-child{
+                @media (min-width: v.$laptop){
+                    border-top: m.px-to-vw(1px) solid rgba($color: v.$black, $alpha: 0.1);
+                }
+                @include m.laptop{
+                    border-top: 1px solid rgba($color: v.$black, $alpha: 0.1);
+                }
+            }
+
+
+            p{
+                @include m.h5;
+            }
+            p, span{
+                text-align: left;
+            }
+            span{
+                display: block;
+                @include m.h4(v.$gold);
+                text-transform: uppercase;
+
+                @include m.tablet{
+                    text-align: left;
+                    margin-left: 0;
+                }
+            }
+        }
+        &-td{
+            width: 100%;
+        }
+    }
+
+    @include m.animation_for_title;
+}
+
+.feature{
+    background: v.$gray;
+    
+    @media (min-width: v.$notebook){
+        position: sticky;
+        left: 0;
+    }
+
+    @media (min-width: v.$laptop){
+        top: m.px-to-vw(-40px);
+    }
+    @include m.laptop{
+        top: 0;
+    }
+    @include m.notebook{
+        top: auto;
+    }
+
+    @media (min-width: v.$laptop){
+        padding-block: m.px-to-vw(160px) m.px-to-vw(40px);
+    }
+    @include m.laptop{
+        padding-block: 126px 2rem;
+    }
+    @include m.notebook{
+        padding-block: 84px 30px;
+    }
+    @include m.tablet{
+        padding-block: 64px 26px;
+    }
+
+    &:not(:last-child){
+        @media (min-width: v.$laptop){
+            margin-bottom: m.px-to-vw(120px);
+        }
+        @include m.laptop{
+            margin-bottom: 90px;
+        }
+        @include m.notebook{
+            margin-bottom: 50px;
+        }
+        @include m.tablet{
+            margin-bottom: 0;
+        }
+    }
+
+    &_container{
+        @media (min-width: v.$laptop){
+            padding-bottom: m.px-to-vw(80px);
+        }
+        @include m.laptop{
+            padding-bottom: 60px;
+        }
+        @include m.tablet{
+            padding-bottom: 40px;
+        }
+    }
+    &-grid{
+        @media (min-width: v.$laptop){
+            @include m.grid(2, m.px-to-vw(24px));
+        }
+        @include m.laptop{
+            @include m.grid(2, 18px);
+        }
+        @include m.notebook{
+            grid-template-columns: 100%;
+            grid-gap: 1.5rem;
+        }
+
+        &>*{
+            width: 100%;
+        }
+    }
+    &-title{
+        @include m.svg_4_title;
+    }
+    &_description{
+        width: 100%;
+        @media (min-width: v.$laptop){
+            padding-right: m.px-to-vw(48px);
+            // max-width: m.px-to-vw(620px);
+
+            margin-bottom: m.px-to-vw(32px);
+        }
+        @include m.laptop{
+            padding-right: 36px;
+            margin-bottom: 24px;
+
+            br{
+                display: none;
+            }
+        }
+        @include m.tablet{
+            padding-right: 24px;
+            margin-bottom: 18px;
+        }
+
+        p{
+            @include m.h6;
+        }
+        &>*{
+            &:not(:last-child){
+                @media (min-width: v.$laptop){
+                    margin-bottom: m.px-to-vw(22px);
+                }
+                @include m.laptop{
+                    margin-bottom: 16px;
+                }
+            }
+        }
+    }
+    &_images{
+        width: 100%;
+        display: grid;
+        @include m.transition(.4s);
+        
+        @media (min-width: v.$laptop){
+            grid-gap: m.px-to-vw(24px);
+            height: m.px-to-vw(400px);
+        }
+        @include m.laptop{
+            grid-gap: 18px;
+            height: 370px;
+        }
+        @include m.notebook{
+            height: 70vh;
+        }
+        @include m.tablet{
+            max-height: 400px;
+        }
+        @media (max-width: 550px){
+            max-height: 340px;
+        }
+        
+        div, img{
+            @include m.transition(.4s);
+            @include m.fullWH;
+
+            @include m.notebook{
+                max-height: 70vh;
+            }
+            @include m.tablet{
+                max-height: 400px;
+            }
+            @media (max-width: 550px){
+                max-height: 340px;
+            }
+        }
+        img{
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    &:nth-child(odd){
+        .feature{
+            &_images{
+                @media (min-width: v.$laptop){
+                    grid-template-columns: 1fr m.px-to-vw(170px);
+                }
+                @include m.laptop{
+                    grid-template-columns: 1fr 140px;
+                }
+                @include m.notebook{
+                    grid-template-columns: 1fr 30%;
+                }
+
+                &[data-hover="2"]{
+                    @media (min-width: v.$laptop){
+                        grid-template-columns: 1fr m.px-to-vw(474px);
+                    }
+                    @include m.laptop{
+                        grid-template-columns: 1fr 70%;
+                    }
+                }
+            }
+        }
+    }
+    &:nth-child(even){
+        .feature{
+            &_images{
+                @media (min-width: v.$laptop){
+                    grid-template-columns: m.px-to-vw(170px) 1fr;
+                }
+                @include m.laptop{
+                    grid-template-columns: 140px 1fr;
+                }
+                @include m.notebook{
+                    grid-template-columns: 30% 1fr;
+                }
+
+                &[data-hover="1"]{
+                    @media (min-width: v.$laptop){
+                        grid-template-columns: m.px-to-vw(474px) 1fr;
+                    }
+                    @include m.laptop{
+                        grid-template-columns: 70% 1fr;
+                    }
+                }
+            }
+        }
+    }
+
+    @include m.animation_for_title;
+}

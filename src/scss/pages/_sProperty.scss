@@ -1,0 +1,1407 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+%bb{
+    @media (min-width: v.$laptop){
+        border-bottom: m.px-to-vw(1px) solid rgba($color: v.$black, $alpha: 0.1);
+    }   
+    @include m.laptop{
+        border-bottom: 1px solid rgba($color: v.$black, $alpha: 0.1);
+    }
+}
+
+.goverlay{
+    @media (min-width: 769px){
+        background: rgba(0,0,0,.2) !important;
+        backdrop-filter: blur(16px);
+    }
+}
+
+.glightbox-clean .gslide-media{
+    box-shadow: none !important;
+}
+
+.single_property{
+    @include m.above;
+    @include m.padding_above_header;
+    &-back{
+        @include m.backlink;
+
+        @media (min-width: v.$laptop){
+            margin-block: 0 m.px-to-vw(26px);
+        }
+        @include m.laptop{
+            margin-block: 0 20px;
+        }
+        @include m.notebook{
+            margin-block: 0 1.1rem;
+        }
+    }
+    &-head{
+        @include m.flex(space-between, 1.5rem 2rem);
+        align-items: flex-end;
+
+        @media (min-width: v.$laptop){
+            margin-block: 0 m.px-to-vw(24px);
+        }
+        @include m.laptop{
+            margin-block: 0 18px;
+        }
+        @include m.notebook{
+            margin-block: 0 1rem;
+        }
+        @media (max-width: 650px){
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 1.1rem;
+        }
+    }
+    &-name{
+        h1{
+            @include m.h4(v.$black, 500);
+
+            @media (min-width: v.$laptop){
+                margin-bottom: m.px-to-vw(12px);
+            }
+            @include m.laptop{
+                margin-bottom: 9.5px;
+            }
+            @include m.notebook{
+                margin-bottom: 7px;
+            }
+        }
+        h2{
+            @include m.h6();
+        }
+    }
+    &-price{
+        &>*{
+            @media (min-width: 650px){
+                text-align: right;
+            }
+            @media (max-width: 650px){
+                text-align: left;
+            }
+        }
+        p{
+            @include m.body(v.$black);
+
+            @media (min-width: v.$laptop){
+                margin-bottom: m.px-to-vw(2px);
+            }
+            @include m.laptop{
+                margin-bottom: 1px;
+            }
+        }
+        h3{
+            @include m.h3();
+        }
+        .share{
+            &_button{
+                @media (max-width: 650px){
+                    margin-left: 0 !important;
+                    padding-left: 0 !important;
+                }
+            }
+            &_box{
+                @media (max-width: 650px){
+                    right: auto;
+                    left: 0;
+                }
+            }
+        }
+    }
+    &-images{
+        @media (min-width: v.$laptop){
+            @include m.grid(3, m.px-to-vw(24px));
+        }
+        @include m.laptop{
+            @include m.grid(3, 18px);
+        }
+        @include m.tablet{
+            grid-gap: 9px;
+        }
+        @include m.phone{
+            grid-gap: 0;
+        }
+
+        a, img{
+            display: block;
+            width: 100%;
+        }
+        &>*{
+            &:not(:first-child){
+                aspect-ratio: 16/10.68;
+
+                @include m.phone{
+                    display: none !important;
+                }
+            }
+            &:first-child{
+                @media (min-width: v.$phone){
+                    grid-column: span 2;
+                    grid-row: span 2;
+                    aspect-ratio: 16/10.83;
+                }
+                @include m.phone{
+                    grid-column: span 3;
+                    aspect-ratio: 16/10;
+                }
+            }
+
+            img{
+                @include m.fullWH;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    }
+    &-actions{
+        @include m.flex(space-between, 0);
+
+        @extend %bb;
+
+        @media (min-width: v.$laptop){
+            padding-block: m.px-to-vw(24px) m.px-to-vw(40px);
+        }
+        @include m.laptop{
+            padding-block: 18px 32px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        @include m.notebook{
+            padding-block: 1rem 1.5rem;
+        }
+
+        ul{
+            list-style: none;
+            @media (min-width: v.$laptop){
+                @include m.flex(flex-start, m.px-to-vw(12px));
+            }
+            @include m.laptop{
+                @include m.flex(flex-start, 9px);
+            }
+
+            button, a, span{
+                cursor: pointer;
+                @include m.transition(.3s);
+                @media (min-width: v.$laptop){
+                    @include m.flex(flex-start, m.px-to-vw(8px));
+                    padding: m.px-to-vw(8px) m.px-to-vw(12px) m.px-to-vw(8px) m.px-to-vw(8px);
+                }
+                @include m.laptop{
+                    @include m.flex(flex-start, 6px);
+                    padding: 6px 9px 6px 6px;
+                }
+
+                &>*{
+                    pointer-events: none;
+                }
+                svg{
+                    @media (min-width: v.$laptop){
+                        @include m.square(m.px-to-vw(24px));
+                    }
+                    @include m.laptop{
+                        @include m.square(18px);
+                    }
+                }
+                p{
+                    @include m.body(v.$green);
+
+                    @media (min-width: v.$laptop){
+                        line-height: 120%;
+                    }
+                    @include m.laptop{
+                        line-height: 1.2em;
+                    }
+                }
+            }
+
+            &:first-child{
+                button, a, span{
+                    background: v.$yellow;
+                }
+            }
+            &:not(:first-child){
+                button, a, span{
+                    background: v.$white;
+                    @media (min-width: v.$laptop){
+                        border: m.px-to-vw(1px) solid rgba($color: v.$black, $alpha: 0.1);
+                    }
+                    @include m.laptop{
+                        border: 1px solid rgba($color: v.$black, $alpha: 0.1);
+                    }
+
+                    &:is(:hover, :focus){
+                        background: #F0F0F0;
+                    }
+                }
+            }
+        }
+
+        &>div{
+            @media (min-width: v.$laptop){
+                @include m.flex(flex-start, m.px-to-vw(24px));
+            }
+            @include m.laptop{
+                @include m.flex(flex-start, 18px);
+            }
+        }
+        &>a{
+            @include m.button(153px, v.$white, v.$black);
+
+            @media (min-width: v.$laptop){
+                height: m.px-to-vw(41px);
+                padding-left: m.px-to-vw(16px);
+            }
+            @include m.laptop{
+                height: 40px;
+
+                padding-left: 12px !important;
+                
+                &:is(:hover, :focus){
+                    width: 164px !important;
+                }
+            }
+
+            &::after{
+                filter: none;
+            }
+
+            &[disabled]{
+                opacity: 0.2;
+                pointer-events: none;
+            }
+        }
+    }
+    &-top{
+        @include m.flex(center, 0);
+        flex-direction: column;
+        &>*{
+            width: 100%;
+        }
+
+        [data-order="0"]{order: 0}
+        [data-order="1"]{order: 1}
+        [data-order="2"]{order: 2}
+        [data-order="3"]{order: 3}
+        [data-order="4"]{order: 4}
+        [data-order="5"]{order: 5}
+    }
+    &-lastshare{
+        @extend %bb;
+
+        @media (min-width: v.$laptop){
+            padding-bottom: m.px-to-vw(24px);
+        }
+        @include m.laptop{
+            padding-bottom: 20px;
+        }
+        @include m.notebook{
+            padding-bottom: 18px;
+        }
+        @include m.tablet{
+            padding-bottom: 1rem;
+        }
+    }
+    &-content{
+        @media (min-width: v.$laptop){
+            @include m.grid(2, m.px-to-vw(24px));
+            padding-bottom: m.px-to-vw(80px);
+        }
+        @include m.laptop{
+            @include m.grid(2, 18px);
+            padding-bottom: 50px;
+        }
+        @media (max-width: 1100px){
+            grid-template-columns: 100%;
+            grid-gap: 2rem;
+            padding-top: 70px;
+        }
+        @include m.notebook{
+            padding-block: 42px;
+        }
+        @include m.tablet{
+            padding-block: 2rem;
+        }
+
+        &>*{
+            width: 100%;
+            position: relative;
+        }
+
+        h4{
+            @include m.h5();
+
+            @media (min-width: v.$laptop){
+                margin-bottom: m.px-to-vw(16px);
+            }
+            @include m.laptop{
+                margin-bottom: 12px;
+            }
+        }
+    }
+    &-features{
+        @media (min-width: 1100px){
+            position: sticky;
+            top: 0;
+            left: 0;
+            height: fit-content;
+        }
+
+        ul{
+            list-style: none;
+            li{
+                @media (min-width: v.$laptop){
+                    padding-left: m.px-to-vw(25px);
+                }
+                @include m.laptop{
+                    padding-left: 21px;
+                }
+
+                position: relative;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+                color: v.$black;
+                @media (min-width: v.$laptop){
+                    font-size: m.px-to-vw(18px);                                                                                                                                                                                                                                                                                                                                                            
+                }
+                @include m.laptop{
+                    font-size: 17px;
+                }
+                @include m.notebook{
+                    font-size: 16px;
+                }
+
+                &:not(:last-child){
+                    @media (min-width: v.$laptop){
+                        margin-bottom: m.px-to-vw(16px);
+                    }
+                    @include m.laptop{
+                        margin-bottom: 12px;
+                    }
+                }
+                &::before{
+                    position: absolute;
+                    content: '';
+                    left: 0;
+                    @include m.centerY;
+                    background: url(../../images/leaf.svg) no-repeat;
+                    background-size: contain;
+                    background-position: center;
+
+                    @media (min-width: v.$laptop){
+                        width: m.px-to-vw(14.83px);
+                        height: m.px-to-vw(29px);
+                    }
+                    @include m.laptop{
+                        width: 12px;
+                        height: 26px;
+                    }
+                }
+            }
+        }
+    }
+    &-lefty{
+        display: grid;
+        @media (min-width: v.$laptop){
+            grid-template-rows: 1fr m.px-to-vw(311px);
+            grid-gap: m.px-to-vw(38px);
+        }
+        @include m.laptop{
+            grid-template-rows: 1fr 250px;
+            grid-gap: 30px;
+        }
+        @media (max-width: 1100px){
+            grid-template-rows: auto;
+        }
+    }
+
+    .managed_by{
+        position: relative;
+        width: 100%;
+        margin-top: auto;
+        background: v.$gray;
+        @media (min-width: v.$laptop){
+            // padding-top: m.px-to-vw(32px);
+        }
+        @include m.laptop{
+            // padding-top: 25px;
+        }
+        @media (max-width: 1100px){
+            // padding-block: 1.5rem 0.5rem;
+        }
+        h3{
+            @include m.h4;
+            font-weight: 500;
+            @media (min-width: v.$laptop){
+                margin-bottom: m.px-to-vw(20px);
+            }
+            @include m.laptop{
+                margin-bottom: 15px;
+            }
+            @include m.notebook{
+                margin-bottom: 13px;
+            }
+        }
+        h4{
+            @include m.h5;
+        }
+        &-member{
+            @media (min-width: v.$laptop){
+                margin-top: m.px-to-vw(16px);
+                display: grid;
+                grid-template-columns: m.px-to-vw(173px) 1fr;
+                grid-gap: m.px-to-vw(16px);
+                align-items: flex-end;
+            }
+            @include m.laptop{
+                margin-top: 12.5px;
+                display: grid;
+                grid-template-columns: 134px 1fr;
+                grid-gap: 12px;
+                align-items: flex-end;
+            }
+            @include m.tabletlg{
+                margin-top: 10px;
+                grid-template-columns: 130px 1fr;
+            }
+            @media (max-width: 436px){
+                grid-template-columns: 100%;
+            }
+
+            &>*{
+                width: 100%;
+            }
+            img{
+                pointer-events: none;
+                @media (min-width: v.$laptop){
+                    height: m.px-to-vw(223px);
+                }
+                @include m.laptop{
+                    height: 190px;
+                }
+                @media (max-width: 436px){
+                    height: auto;
+                }
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+        &-info{
+            div{
+                width: 100%;
+                svg{
+                    @media (min-width: v.$laptop){
+                        @include m.square(m.px-to-vw(14px));
+                    }
+                }
+                &>*{
+                    width: 100%;
+                    position: relative;
+                    @media (min-width: v.$laptop){
+                        height: m.px-to-vw(58px);
+                    }
+                    @include m.laptop{
+                        height: 52px;
+                    }
+                    @include m.notebook{
+                        height: 48px;
+                    }
+                    
+                    &:first-child{
+                        background: v.$black;
+                        @include m.body(v.$white);
+                        
+                        @media (min-width: v.$laptop){
+                            @include m.flex(center, m.px-to-vw(12px));
+                        }
+                        @include m.laptop{
+                            @include m.flex(center, 9px);
+                        }
+                    }
+                    &:last-child{
+                        @media (min-width: v.$laptop){
+                            @include m.flex(center, m.px-to-vw(12px));
+                        }
+                        @include m.laptop{
+                            @include m.flex(center, 9px);
+                        }
+
+                        background: v.$white;
+                        @include m.body(v.$black);
+        
+                        @media (min-width: v.$laptop){
+                            border: m.px-to-vw(1px) solid rgba($color: v.$black, $alpha: 0.1);
+                        }
+                        @include m.laptop{
+                            border: 1px solid rgba($color: v.$black, $alpha: 0.1);
+                        }
+
+                        &::after{
+                            position: relative;
+                            pointer-events: none;
+                            content: '';
+                            // @include m.centerY;
+                            opacity: 1;
+                            background: url(../../images/arrow.svg) no-repeat;
+                            background-size: cover;
+                            background-position: center;
+                            @include m.transition();
+                            filter: invert(1);
+                            @media (min-width: v.$laptop){
+                                @include m.square(m.px-to-vw(14px));
+                            }
+                            @include m.laptop{
+                                @include m.square(16px);
+                            }
+                        }
+                        &:is(:hover, :focus){
+                            
+                        }
+                    }
+
+                    &[disabled]{
+                        opacity: 0.2;
+                        pointer-events: none;
+                    }
+                    &:not(:last-child){
+                        @media (min-width: v.$laptop){
+                            margin-bottom: m.px-to-vw(24px);
+                        }
+                        @include m.laptop{
+                            margin-bottom: 19px;
+                        }
+                        @include m.notebook{
+                            margin-bottom: 15px;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    &-description{
+        .text_content{
+            textarea{
+                width: 100%;
+                resize: none;
+                border: none;
+                padding: 0;
+                background: none;
+                min-height: 60vh;
+            }
+            textarea, li, p{
+                @include m.body(v.$black);
+            }
+            ul, ol{
+                list-style: none;
+            }
+        }
+    }
+    &-features, &-description{
+        @media (min-width: v.$laptop){
+            padding-top: m.px-to-vw(96px);
+        }
+        @include m.laptop{
+            padding-top: 78px;
+        }
+        @media (max-width: 1100px){
+            padding-top: 0;
+        }
+    }
+    &-disclaimer{
+        @media (min-width: v.$laptop){
+            margin-top: m.px-to-vw(16px);
+        }
+        @include m.laptop{
+            margin-top: 16px;
+        }
+
+        h5{
+            @include m.body(v.$black);
+            font-weight: 700;
+
+            @include m.phone{
+                margin-bottom: 4px;
+            }
+        }
+        ul, ol{
+            list-style: none;
+        }
+        li, p{
+            @include m.caption();
+            opacity: 0.6;
+
+            @include m.tablet{
+                line-height: 1.35em;
+            }
+        }
+        li{
+            &:not(:last-child){
+                @media (min-width: v.$laptop){
+                    margin-bottom: m.px-to-vw(16px);
+                }
+                @include m.laptop{
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+    &-buttons{
+        @media (min-width: v.$laptop){
+            @include m.grid(2, m.px-to-vw(24px));
+            margin-top: m.px-to-vw(16px);
+            padding-top: m.px-to-vw(40px);
+        }
+        @include m.laptop{
+            @include m.grid(2, 18px);
+            margin-top: 12px;
+            padding-top: 32px;
+        }
+        @include m.notebook{
+            padding-top: 24px;
+        }
+        @include m.phone{
+            grid-template-columns: 100%;
+            grid-gap: 10px;
+        }
+
+        &>*{
+            width: 100%;
+            @media (min-width: v.$laptop){
+                height: m.px-to-vw(58px);
+                @include m.flex(center, m.px-to-vw(12px));
+            }
+            @include m.laptop{
+                height: 52px;
+                @include m.flex(center, 9px);
+            }
+            @include m.notebook{
+                height: 48px;
+            }
+
+            &:first-child{
+                background: v.$black;
+                @include m.body(v.$white);
+            }
+            &:last-child{
+                background: v.$white;
+                @include m.body(v.$black);
+
+                @media (min-width: v.$laptop){
+                    border: m.px-to-vw(1px) solid rgba($color: v.$black, $alpha: 0.1);
+                }
+                @include m.laptop{
+                    border: 1px solid rgba($color: v.$black, $alpha: 0.1);
+                }
+            }
+            &[disabled]{
+                opacity: 0.2;
+                pointer-events: none;
+            }
+        }
+    }
+    &-map{
+        @extend %bb;
+
+        @media (min-width: v.$laptop){
+            padding-block: m.px-to-vw(80px);
+
+            @include m.flex(space-between, m.px-to-vw(48px));
+        }
+        @include m.laptop{
+            padding-block: 60px;
+            @include m.flex(space-between, 32px);
+        }
+        @include m.notebook{
+            padding-block: 48px;
+        }
+        @include m.tablet{
+            padding-block: 32px;
+        }
+
+        #map_canvas{
+            overflow: hidden;
+            @media (min-width: v.$laptop){
+                width: m.px-to-vw(644px);
+                height: m.px-to-vw(379px);
+                border-radius: m.px-to-vw(4px);
+            }
+            @include m.laptop{
+                width: 574px;
+                aspect-ratio: 16/9;
+                height: auto;
+                border-radius: 4px;
+                margin-inline: auto;
+            }
+            @include m.notebook{
+                width: 100%;
+            }
+
+            .leaflet-control-container{
+                display: none !important;
+            }
+
+            &.in_2_cols{
+                @media (min-width: v.$notebook){
+                    width: 100% !important;
+                }
+            }
+        }
+
+        h3{
+            @include m.h5;
+
+            @media (min-width: v.$laptop){
+                margin-bottom: m.px-to-vw(16px);
+            }
+            @include m.laptop{
+                margin-bottom: 12px;
+            }
+        }
+        li, h4{
+            @include m.body(v.$black);
+        }
+        li b, h4{
+            font-weight: 600;
+        }
+        li:not(:last-child), h4{
+            @media (min-width: v.$laptop){
+                margin-bottom: m.px-to-vw(8px);
+            }
+            @include m.laptop{
+                margin-bottom: 6px;
+            }
+        }
+        .interest{
+            @media (min-width: v.$laptop){
+                width: m.px-to-vw(668px);
+            }
+            @include m.laptop{
+                width: 598px;
+                margin-inline: auto;
+            }
+            @include m.notebook{
+                width: 100%;
+            }
+            ul, ol{
+                list-style: none;
+                li{
+                    position: relative;
+
+                    img{
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        // @include m.centerY;
+                    }
+                }
+            }
+            &-grid{
+                @media (min-width: v.$laptop){
+                    @include m.grid(2, m.px-to-vw(40px) m.px-to-vw(24px));
+                }
+                @include m.laptop{
+                    @include m.grid(2, 30px 18px);
+                }
+                @include m.tablet{
+                    grid-template-columns: 100%;
+                    grid-gap: 1rem;
+                }
+
+                div{
+                    &:first-child{
+                        li{
+                            @media (min-width: v.$laptop){
+                                padding-left: m.px-to-vw(44px);
+                            }
+                            @include m.laptop{
+                                padding-left: 34px;
+                            }
+
+                            img{
+                                width: 100%;
+                                height: auto;
+                                @media (min-width: v.$laptop){
+                                    max-width: m.px-to-vw(32px);
+                                }
+                                @include m.laptop{
+                                    max-width: 24px;
+                                }
+                            }
+                        }
+                    }
+                    &:not(:first-child){
+                        li{
+                            @media (min-width: v.$laptop){
+                                padding-left: m.px-to-vw(36px);
+                            }
+                            @include m.laptop{
+                                padding-left: 28px;
+                            }
+
+                            img{
+                                @media (min-width: v.$laptop){
+                                    @include m.square(m.px-to-vw(24px));
+                                }
+                                @include m.laptop{
+                                    @include m.square(19px);
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+    }
+}
+
+.share{
+    position: relative;
+    &_button{
+        background: none;
+        border: none;
+        @include m.body(v.$black);
+        @media (min-width: v.$laptop){
+            @include m.flex(flex-end, m.px-to-vw(8px));
+            padding: m.px-to-vw(8px) m.px-to-vw(12px) m.px-to-vw(8px) m.px-to-vw(8px);
+            margin: m.px-to-vw(2px) 0 0 auto;
+        }
+        @include m.laptop{
+            @include m.flex(flex-end, 6px);
+            padding: 6px 9px 6px 6px;
+            margin: 1.2px 0 0 auto;
+        }
+
+        svg{
+            @media (min-width: v.$laptop){
+                @include m.square(m.px-to-vw(24px));
+            }
+            @include m.laptop{
+                @include m.square(20px);
+            }
+        }
+    }
+    &_box{
+        position: absolute;
+        @include m.transition(.375s);
+        right: 0;
+        background: v.$white;
+        z-index: 1000;
+        
+        @media (min-width: v.$laptop){
+            padding: m.px-to-vw(14px);
+            top: calc(100% + m.px-to-vw(4px));
+            width: m.px-to-vw(201px);
+        }
+        @include m.laptop{
+            padding: 12px;
+            top: calc(100% + 2.2px);
+            width: 170px;
+        }
+
+        &>*{
+            width: 100% !important;
+
+            &:not(:last-child){
+                @media (min-width: v.$laptop){
+                    margin-bottom: m.px-to-vw(6px);
+                }
+                @include m.laptop{
+                    margin-bottom: 4px;
+                }
+            }
+        }
+        &-input{
+            button{
+                width: 100%;
+                background: v.$black;
+                border: none;
+                @include m.caption(v.$white);
+                text-align: center;
+
+                @media (min-width: v.$laptop){
+                    height: m.px-to-vw(34px);
+                    padding-block: m.px-to-vw(6px);
+                    min-height: m.px-to-vw(34px);
+                }
+                @include m.laptop{
+                    height: 28px;
+                    padding-block: 4px;
+                    min-height: 28px;
+                }
+
+                &:hover{
+                    background: rgba($color: v.$black, $alpha: 0.875);
+                }
+                &:focus{
+                    background: rgba($color: v.$black, $alpha: 0.5);
+                }
+            }
+        }
+        &-grid{
+            @media (min-width: v.$laptop){
+                @include m.grid(3, m.px-to-vw(9px));
+            }
+            @include m.laptop{
+                @include m.grid(3, 7px);
+            }
+
+            .button_share{
+                background: none;
+                border: none;
+
+                @media (min-width: v.$laptop){
+                    @include m.square(m.px-to-vw(27px));
+                }
+                @include m.laptop{
+                    @include m.square(22px);
+                }
+                svg{
+                    @include m.fullWH;
+                    object-fit: contain;
+                    color: v.$green;
+                    object-position: center;
+                }
+            }
+        }
+        &-widget{
+            .st-total{
+                display: none !important;
+            }
+            .st-btn{
+                display: inline-block !important;
+
+                @media (min-width: v.$laptop){
+                    @include m.square(m.px-to-vw(38px) !important);
+                    padding: 0 m.px-to-vw(10px) !important;
+                }
+                @include m.laptop{
+                    @include m.square(30px !important);
+                    padding: 0 8px !important;
+                }
+
+                &:not(:last-child){
+                    @media (min-width: v.$laptop){
+                        margin-right: 0.4vw !important;       
+                    }
+                    @include m.laptop{
+                        
+                    }
+                }
+
+                img{
+                    width: 100% !important;
+                    height: 100% !important;
+                    object-fit: contain !important;
+                    object-position: center !important;
+                    inset: 0 !important;
+                }
+            }
+        }
+    }
+    &:not(.active){
+        .share{
+            &_box{
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+%result{
+    display: block !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    color: v.$black !important;
+
+    @media (min-width: v.$laptop){
+        margin: m.px-to-vw(8px) 0 0 0 !important;
+        font-size: m.px-to-vw(47px) !important;
+        letter-spacing: m.px-to-vw(-1.88px) !important;
+        line-height: 130% !important;
+    }
+    @include m.laptop{
+        font-size: 37px !important;
+        margin-top: 6px !important;
+        line-height: 1em !important;
+        letter-spacing: -0.76px !important;
+    }
+    @include m.notebook{
+        font-size: 32px !important;
+    }
+    @include m.tablet{
+        font-size: 26px !important;
+    }
+}
+
+.mortgage_calculator{
+    @media (min-width: v.$laptop){
+        padding-block: m.px-to-vw(80px) 0;
+    }
+    @include m.laptop{
+        padding-block: 60px 0;
+    }
+    @include m.tablet{
+        padding-block: 40px 0;
+    }
+
+    &-grid{
+        @media (min-width: v.$laptop){
+            @include m.grid(2, m.px-to-vw(24px));
+            align-items: center;
+        }
+        @include m.laptop{
+            display: grid;
+            grid-template-columns: 100%;
+            grid-gap: 2rem;
+            align-items: center;
+        }
+    }
+    &-info{
+        h2{
+            @include m.h5();
+        }
+        p{
+            @include m.h6();
+
+            @media (min-width: v.$laptop){
+                margin-block: m.px-to-vw(24px) m.px-to-vw(40px);
+            }
+            @include m.laptop{
+                margin-block: 18px 30px;
+            }
+            @include m.tablet{
+                margin-block: 16px 23px;
+            }
+        }
+        a{
+            @include m.button(192px, v.$white, v.$black);
+            &::after{
+                filter: none;
+            }
+
+            @include m.laptop{
+                padding-left: 18px !important;
+            }
+        }
+    }
+
+    &-input, &-output{
+        &>*{
+            width: 100%;
+        }
+    }
+
+    &-input{
+        @media (min-width: v.$laptop){
+            @include m.grid(2, m.px-to-vw(32px) m.px-to-vw(24px));
+        }
+        @include m.laptop{
+            @include m.grid(2, 26px 18px);
+        }
+        @include m.phone{
+            grid-template-columns: 100%;
+            grid-gap: 1rem;
+        }
+        
+        .result{
+            p{
+                @include m.body(v.$black);
+            }
+            span{
+                @extend %result;
+            }
+        }
+    }
+    &-output{
+        .gform_heading, .gfield_required, .gform_footer, .gfield_description{
+            display: none !important;
+        }
+        .gfield{
+            input, select{
+                border-radius: 0 !important;
+                width: 100% !important;
+                border: none !important;
+                outline: none !important;
+                box-shadow: none !important;
+            }
+            &:not(:last-child){
+                label{
+                    display: block !important;
+                    color: #52525C !important;
+                    font-weight: 400 !important;
+                    font-style: normal !important;
+        
+                    @media (min-width: v.$laptop){
+                        font-size: m.px-to-vw(15px) !important;
+                        line-height: 150% !important;
+                        margin: 0 0 m.px-to-vw(8px) 0 !important;
+                    }
+                    @include m.laptop{
+                        font-size: 14px !important;
+                        line-height: 1.1em !important;
+                        margin: 0 0 6px 0 !important;
+                    }
+                }
+                input, select{
+                    background: v.$white;
+                    color: rgba($color: v.$black, $alpha: 0.6) !important;
+                    
+                    @media (min-width: v.$laptop){
+                        height: m.px-to-vw(48px) !important;
+                        font-size: m.px-to-vw(15px) !important;
+                        line-height: 160% !important;
+                        padding-inline: m.px-to-vw(16px) !important;
+                        border-bottom: m.px-to-vw(1px) solid rgba($color: v.$black, $alpha: 0.6) !important;
+                    }
+                    @include m.laptop{
+                        height: 42px !important;
+                        font-size: 14px !important;
+                        line-height: 1.1em !important;
+                        padding-inline: 12px !important;
+                        border-bottom: 1px solid rgba($color: v.$black, $alpha: 0.6) !important;
+                    }
+        
+                    &::placeholder{
+                        color: rgba($color: v.$black, $alpha: 0.6) !important;
+                    }
+                }
+                select{
+                    @include m.flex(flex-start, 0);
+                }
+            }
+            &:last-child{
+                label{
+                    color: v.$black !important;
+                    font-weight: 400 !important;
+                    font-style: normal !important;
+                    @media (min-width: v.$laptop){
+                        font-size: m.px-to-vw(16px) !important;
+                        line-height: 160% !important;
+                    }
+                    @include m.laptop{
+                        font-size: 15px !important;
+                        line-height: 1.3em !important;
+                    }
+                }
+                input, select{
+                    padding: 0 !important;
+                    background: none !important;
+                    height: fit-content !important;
+
+                    @extend %result;
+                }
+            }
+        }
+    }
+}
+
+html{
+    &:has(.popup.active){
+        overflow: hidden;
+    }
+}
+
+.popup{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 100;
+    @include m.transition(.3s);
+    &>*{
+        position: absolute;
+        @include m.transition(.4s);
+    }
+    &_content{
+        inset: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        z-index: 102;
+        @media (min-width: v.$laptop){
+            padding-top: m.px-to-vw(30px);
+        }
+        @include m.laptop{
+            padding-top: 24px;
+        }
+
+        &>*{
+            position: absolute;
+        }
+    }
+    &_background{
+        inset: 0;
+        z-index: 104;
+    }
+    &__bg{
+        background: rgba($color: v.$black, $alpha: 0.2);
+        inset: 0;
+        backdrop-filter: blur(8px);
+        z-index: 101;
+    }
+    &__body{
+        width: 100%;
+        @include m.centerX;
+        z-index: 105;
+        @media (min-width: v.$laptop){
+            @include m.flex(center, m.px-to-vw(30px));
+            flex-direction: column;
+            padding-bottom: m.px-to-vw(90px);
+        }
+        @include m.laptop{
+            @include m.flex(center, 24px);
+            flex-direction: column;
+            padding-bottom: 64px;
+        }
+        @include m.notebook{
+            padding-bottom: 42px;
+        }
+
+        &>*{
+            background: v.$white;
+            border-radius: 0;
+        }
+    }
+    &__close{
+        @media (min-width: v.$laptop){
+            border: m.px-to-vw(1px) solid rgba($color: v.$black, $alpha: 0.1);
+            @include m.flex(center, m.px-to-vw(14px));
+            padding: m.px-to-vw(14px);
+        }
+        @include m.laptop{
+            border: 1px solid rgba($color: v.$black, $alpha: 0.1);
+            @include m.flex(center, 11px);
+            padding: 12px;
+        }
+        &>*{
+            pointer-events: none;
+        }
+        svg{
+            @media (min-width: v.$laptop){
+                @include m.square(m.px-to-vw(12px));
+            }
+            @include m.laptop{
+                @include m.square(11px);
+            }
+        }
+        p{
+            @include m.body(v.$black);
+            font-weight: 500;
+
+            @media (min-width: v.$laptop){
+                line-height: 120%;
+            }
+            @include m.laptop{
+                line-height: 1.15em;
+            }
+        }
+    }
+    &__box{
+        @media (min-width: v.$laptop){
+            width: m.px-to-vw(577px);
+        }
+        @include m.laptop{
+            width: 96%;
+            max-width: 524px;
+        }
+
+        img{
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
+    &__slider{
+        @media (min-width: v.$laptop){
+            width: m.px-to-vw(899px);
+        }
+        @include m.laptop{
+            width: 96%;
+            max-width: 750px;
+        }
+        background: transparent;
+
+        .splide{
+            &__arrow{
+                background: v.$yellow !important;
+                opacity: 1 !important;
+                border-radius: 50% !important;
+                border: none !important;
+
+                @media (min-width: v.$laptop){
+                    @include m.square(m.px-to-vw(64px));
+                    @include m.flex(center, 0);
+                }
+                @include m.laptop{
+                    @include m.square(56px);
+                    @include m.flex(center, 0);
+                }
+                @include m.tabletlg{
+                    @include m.square(44px);
+                    @include m.flex(center, 0);
+                }
+                
+                svg{
+                    @media (min-width: v.$laptop){
+                        @include m.square(m.px-to-vw(24px));
+                    }
+                    @include m.laptop{
+                        @include m.square(20px);
+                    }
+                    @include m.tabletlg{
+                        @include m.square(18px);
+                    }
+                }
+
+                &--prev{
+                    @media (min-width: v.$tabletlg){
+                        left: auto;
+                    }
+
+                    @media (min-width: v.$laptop){
+                        right: calc(100% + m.px-to-vw(24px));
+                    }
+                    @media (max-width: v.$laptop) and (min-width: v.$tabletlg){
+                        right: calc(100% + 18px);
+                    }
+                }
+                &--next{
+                    @media (min-width: v.$tabletlg){
+                        right: auto;
+                    }
+
+                    @media (min-width: v.$laptop){
+                        left: calc(100% + m.px-to-vw(24px));
+                    }
+                    @media (max-width: v.$laptop) and (min-width: v.$tabletlg){
+                        left: calc(100% + 18px);
+                    }
+                }
+            }
+            &__slide{
+                img{
+                    max-height: 90vh;
+                    object-fit: contain;
+                    object-position: center;
+                }
+            }
+        }
+    }
+
+    &:not(.active){
+        opacity: 0;
+        pointer-events: none;
+        .popup{
+            &>*{
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+    }
+}

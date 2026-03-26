@@ -1,0 +1,681 @@
+@use 'variables' as v;
+
+/** Media Queries **/
+@mixin phone {
+    @media (max-width: v.$phone) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: v.$tablet) {
+        @content;
+    }
+}
+
+@mixin tabletlg {
+    @media (max-width: v.$tabletlg) {
+        @content;
+    }
+}
+
+@mixin notebook {
+    @media (max-width: v.$notebook) {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media (max-width: v.$laptop) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (max-width: v.$desktop) {
+        @content;
+    }
+}
+
+@mixin pc {
+    @media (max-width: v.$pc) {
+        @content;
+    }
+}
+
+@mixin tv {
+    @media (max-width: v.$tv) {
+        @content;
+    }
+}
+
+@mixin fullWH {
+    width: 100%;
+    height: 100%;
+}
+
+@mixin transition($s: .3s) {
+    transition: all $s ease;
+}
+
+@mixin flex($prop, $gap: 0) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: $prop;
+    gap: $gap;
+}
+
+@mixin grid($n, $gap) {
+    display: grid;
+    grid-template-columns: repeat($n, 1fr);
+    grid-gap: $gap;
+}
+
+@mixin centerX {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin centerY {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin centerXY {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin square($size) {
+    display: block;
+    width: $size;
+    height: $size;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    object-position: center;
+}
+
+@mixin lines($n) {
+    display: -webkit-box;
+    -webkit-line-clamp: $n;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@function px-to-vw($val) {
+    $num: calc($val / 1px);
+    $base: 1440;
+    $res: calc(($num / $base) * 100 * 1vw);
+    @return $res;
+}
+
+@mixin animation_for_title {
+    .animation_title {
+        &>* {
+            position: relative;
+            opacity: 0;
+            @include transition(.3s);
+
+            @media (min-width: v.$laptop) {
+                bottom: px-to-vw(-136px);
+            }
+
+            @include laptop {
+                bottom: -136px;
+            }
+
+            svg {
+                opacity: 0;
+                transform: rotate(-35deg);
+                @include transition(.3s);
+                transition-delay: .3s;
+
+                @media (min-width: v.$laptop) {
+                    left: px-to-vw(-120px);
+                }
+
+                @include laptop {
+                    left: -100px;
+                }
+            }
+        }
+    }
+
+    &.in_animation_progress {
+        .animation_title {
+            &>* {
+                opacity: 1;
+                bottom: 0;
+
+                svg {
+                    opacity: 1;
+                    transform: none;
+
+                    @media (min-width: v.$laptop) {
+                        left: px-to-vw(6px);
+                    }
+
+                    @include laptop {
+                        left: 5px;
+                    }
+
+                    @include notebook {
+                        left: 4px;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+@mixin svg_4_title {
+    svg {
+        @media (min-width: v.$laptop) {
+            bottom: px-to-vw(20px);
+            left: px-to-vw(6px);
+            width: px-to-vw(48px);
+            height: px-to-vw(76px);
+        }
+
+        @include laptop {
+            bottom: 31.5px;
+            left: 5px;
+            width: 32px;
+            height: 44px;
+        }
+
+        @include notebook {
+            bottom: 16px;
+            left: 4px;
+            width: 24px;
+            height: 38px;
+        }
+    }
+}
+
+@mixin delete_pseudo {
+
+    &::before,
+    &::after {
+        display: none !important;
+    }
+}
+
+@mixin grid_3($n1: 40px, $n2: 24px) {
+    @media (min-width: v.$laptop) {
+        @include grid(3, px-to-vw(40px) px-to-vw(24px));
+    }
+
+    @include laptop {
+        @include grid(3, calc($n1 - 12px) 18px);
+    }
+
+    @media (max-width: 1100px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 22px;
+    }
+
+    @media (max-width: 700px) {
+        grid-template-columns: 100%;
+    }
+}
+
+@mixin caption($color: v.$black, $fz: 14px) {
+    font-weight: 400;
+    font-style: normal;
+    color: $color;
+
+    @media (min-width: v.$laptop) {
+        line-height: 160%;
+        font-size: px-to-vw($fz);
+    }
+
+    @include laptop {
+        line-height: 1.2em;
+        font-size: $fz;
+    }
+}
+
+@mixin body($color: v.$white) {
+    color: $color;
+    font-weight: 400;
+    font-style: normal;
+
+    @media (min-width: v.$laptop) {
+        font-size: px-to-vw(16px);
+        line-height: 160%;
+    }
+
+    @include laptop {
+        font-size: 15px;
+        line-height: 1.3em;
+    }
+}
+
+@mixin button($width: auto, $color: v.$white, $background: transparent, $size: 'big') {
+    @include flex(flex-start, 0);
+    color: $color;
+    background: $background;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: left;
+    font-style: normal;
+    overflow: hidden;
+
+    @media (min-width: v.$laptop) {
+
+        @if($width ==auto or $width ==fit-content) {
+            width: fit-content;
+            padding-right: px-to-vw(20px);
+        }
+
+        @else {
+            width: px-to-vw($width);
+        }
+
+        @if($size =='big') {
+            height: px-to-vw(50px);
+            font-size: px-to-vw(16px);
+            padding-left: px-to-vw(20px);
+        }
+
+        @else {
+            height: px-to-vw(32px);
+            font-size: px-to-vw(15px);
+            padding-left: px-to-vw(14px);
+        }
+
+
+        border: 0.069vw solid v.$white;
+        line-height: 160%;
+    }
+
+    @include laptop {
+
+        @if($size =='big') {
+            height: 46px;
+            font-size: 15px;
+            padding-left: 16px;
+            width: calc($width - 15px);
+        }
+
+        @else {
+            height: 30px;
+            font-size: 14px;
+            padding-left: 12px;
+            width: calc($width - 7px);
+        }
+
+        @if($width ==auto or $width ==fit-content) {
+            padding-right: 16px;
+            width: fit-content;
+        }
+
+
+        border: 1px solid v.$white;
+        line-height: 1.3em;
+    }
+
+    position: relative;
+
+    &::before,
+    &::after {
+        position: absolute;
+        pointer-events: none;
+        content: '';
+    }
+
+    &::after {
+        content: '';
+        @include centerY;
+        opacity: 0;
+        @include transition();
+
+        @media (min-width: v.$laptop) {
+            @include square(px-to-vw(14px));
+
+            @if($width ==auto or $width ==fit-content) {
+                left: calc(100% - px-to-vw(33px));
+            }
+
+            @else {
+                left: calc(px-to-vw($width) - px-to-vw(8px));
+            }
+        }
+
+        @include laptop {
+
+            @if($width ==auto or $width ==fit-content) {
+                left: calc(100% - 30px);
+            }
+
+            @else {
+                left: calc($width - 15px);
+            }
+
+
+            @include square(12px);
+        }
+
+        background: url(../../images/arrow.svg) no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        @if($background !=transparent) {
+            filter: invert(1);
+        }
+    }
+
+    &::before {
+        width: px-to-vw(80px);
+        height: px-to-vw(96px);
+        @include transition(.5s);
+        @include centerY;
+        left: px-to-vw(-80px);
+
+        background: url(../../images/shimmer.png) no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        filter: blur(10px);
+
+        @if($background ==black) {
+            opacity: 0.3;
+        }
+
+        @else {
+            opacity: 0;
+        }
+    }
+
+    &:is(:hover, :focus) {
+
+        &::before {
+            left: 100%;
+        }
+
+        @if($size =='big') {
+
+            @media (min-width: v.$laptop) {
+                width: calc(px-to-vw($width) + px-to-vw(24px));
+            }
+
+            @include laptop {
+                width: calc($width + 15px);
+            }
+
+        }
+
+        @else {
+
+            @media (min-width: v.$laptop) {
+                width: calc(px-to-vw($width) + px-to-vw(18px));
+            }
+
+            @include laptop {
+                width: calc($width + 12px);
+            }
+
+        }
+
+
+        @if($width ==auto or $width ==fit-content) {
+            @media (min-width: v.$laptop) {
+                padding-right: px-to-vw(44px);
+            }
+
+            @include laptop {
+                padding-right: 40px;
+            }
+        }
+
+        &::after {
+            opacity: 1;
+        }
+    }
+}
+
+@mixin h1($color: v.$white) {
+    color: $color;
+    font-weight: 500;
+    font-style: normal;
+
+    @media (min-width: v.$laptop) {
+        font-size: px-to-vw(84px);
+        letter-spacing: px-to-vw(-3.36px);
+        line-height: 110%;
+    }
+
+    @include laptop {
+        line-height: 1.2em;
+        font-size: 68px;
+        letter-spacing: -1.8px;
+    }
+
+    @include notebook {
+        font-size: 56px;
+    }
+
+    @include tablet {
+        font-size: 48px;
+    }
+}
+
+@mixin h2($color: v.$black) {
+    color: $color;
+    font-weight: 500;
+    font-style: normal;
+
+    @media (min-width: v.$laptop) {
+        font-size: px-to-vw(80px);
+        line-height: 100%;
+        letter-spacing: px-to-vw(-3.2px);
+    }
+
+    @include laptop {
+        font-size: 60px;
+        line-height: 1.1em;
+        letter-spacing: -1.4px;
+    }
+
+    @include notebook {
+        font-size: 48px;
+    }
+}
+
+@mixin h3($color: v.$black) {
+    font-style: normal;
+    font-weight: 500;
+    color: $color;
+
+    @media (min-width: v.$laptop) {
+        line-height: 130%;
+        font-size: px-to-vw(47px);
+        letter-spacing: px-to-vw(-1.88px);
+    }
+
+    @include laptop {
+        line-height: 1.4em;
+        font-size: 32px;
+        letter-spacing: -0.9px;
+    }
+
+    b,
+    strong {
+        color: v.$gold;
+        font-weight: 600 !important;
+    }
+}
+
+@mixin h4($color: v.$black, $weight: 700) {
+    font-weight: $weight;
+    font-style: normal;
+    color: $color;
+
+    @media (min-width: v.$laptop) {
+        font-size: px-to-vw(36px);
+        line-height: 120%;
+        letter-spacing: px-to-vw(-0.72px);
+    }
+
+    @include laptop {
+        font-size: 28px;
+        line-height: 1.3em;
+        letter-spacing: -0.36px;
+    }
+
+    b,
+    strong,
+    span {
+        color: v.$gold;
+    }
+}
+
+@mixin h5($color: v.$black) {
+    font-style: normal;
+    font-weight: 500;
+    color: $color;
+
+    @media (min-width: v.$laptop) {
+        line-height: 150%;
+        font-size: px-to-vw(27px);
+        letter-spacing: px-to-vw(-0.54px);
+    }
+
+    @include laptop {
+        line-height: 1.3em;
+        font-size: 23px;
+        letter-spacing: -0.27px;
+    }
+}
+
+@mixin h6($color: v.$black) {
+    font-weight: 400;
+    color: $color;
+    font-style: normal;
+
+    @media (min-width: v.$laptop) {
+        line-height: 160%;
+        font-size: px-to-vw(21px);
+    }
+
+    @include laptop {
+        line-height: 1.4em;
+        font-size: 19px;
+    }
+
+    @include notebook {
+        font-size: 18px;
+    }
+
+    @include tablet {
+        font-size: 17px;
+    }
+}
+
+@mixin padding_above_header($paddingBottom: 120px) {
+    @media (min-width: v.$laptop) {
+        padding-block: px-to-vw(160px) px-to-vw($paddingBottom);
+    }
+
+    @include laptop {
+        padding-block: 130px calc($paddingBottom - 30px);
+    }
+
+    @include tablet {
+        padding-block: 100px calc($paddingBottom - 60px);
+    }
+}
+
+@mixin padding_block_section() {
+    @media (min-width: v.$laptop) {
+        padding-block: px-to-vw(120px) px-to-vw(80px);
+    }
+
+    @include laptop {
+        padding-block: 88px 3rem;
+    }
+
+    @include notebook {
+        padding-block: 66px 2.5rem;
+    }
+}
+
+@mixin above {
+    background: v.$gray;
+    position: relative;
+    z-index: 3;
+}
+
+@mixin tag($fz: 14px) {
+    @media (min-width: v.$laptop) {
+        @include flex(flex-start, px-to-vw(4px));
+        flex-wrap: nowrap;
+        padding: px-to-vw(4px) px-to-vw(8px);
+    }
+
+    @include laptop {
+        @include flex(flex-start, 3px);
+        flex-wrap: nowrap;
+        padding: 3px 6px;
+    }
+
+    @include lines(1);
+    width: fit-content;
+    @include caption(v.$green, $fz);
+
+    p {
+        @include lines(1);
+        @include caption(v.$green, $fz);
+    }
+
+    background: v.$yellow;
+
+    svg {
+        @media (min-width: v.$laptop) {
+            width: px-to-vw(11px);
+        }
+
+        @include laptop {
+            width: 10px;
+        }
+
+        height: auto;
+    }
+}
+
+@mixin backlink {
+    a {
+        width: fit-content;
+
+        @media (min-width: v.$laptop) {
+            @include flex(flex-start, px-to-vw(12px));
+        }
+
+        @include laptop {
+            @include flex(flex-start, 9px);
+        }
+
+        @include tablet {
+            @include flex(flex-start, 6px);
+        }
+
+        svg {
+            @media (min-width: v.$laptop) {
+                width: px-to-vw(14px);
+                height: px-to-vw(14px);
+                object-fit: contain;
+                object-position: center;
+            }
+        }
+
+        p {
+            @include body(v.$black);
+            text-decoration: underline;
+        }
+    }
+}

@@ -1,0 +1,615 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+%placeholder {
+    font-weight: 400;
+    line-height: 150%;
+    font-style: normal;
+
+    @media (min-width: v.$laptop) {
+        font-size: m.px-to-vw(15px);
+    }
+
+    @include m.laptop {
+        font-size: 15px;
+    }
+
+    @include m.tablet {
+        font-size: 16px;
+    }
+}
+
+.get_in_touch {
+    @include m.above;
+    overflow: hidden;
+
+    &>img {
+        position: absolute;
+        pointer-events: none;
+        z-index: -3;
+
+        @media (min-width: v.$laptop) {
+            width: m.px-to-vw(500px);
+            top: m.px-to-vw(84.74px);
+            left: m.px-to-vw(-57.59px);
+            transform: rotate(45deg);
+        }
+
+        @include m.laptop {
+            width: 35%;
+            top: 70px;
+            left: -30px;
+            transform: rotate(45deg);
+        }
+
+        @include m.notebook {
+            opacity: 0.7;
+            width: 40%;
+        }
+    }
+
+    &:not(.bg) {
+        @include m.padding_above_header;
+    }
+
+    &.bg {
+        background: rgba($color: v.$gold2, $alpha: 0.4);
+
+        @media (min-width: v.$laptop) {
+            padding-block: m.px-to-vw(120px);
+        }
+
+        @include m.laptop {
+            padding-block: 90px;
+        }
+
+        @include m.tablet {
+            padding-block: 60px;
+        }
+    }
+
+    &-row {
+        @media (min-width: v.$laptop) {
+            @include m.grid(2, m.px-to-vw(32px));
+        }
+
+        @include m.laptop {
+            @include m.grid(2, 26px);
+        }
+
+        @include m.notebook {
+            grid-template-columns: 100%;
+            grid-gap: 2rem;
+        }
+
+        &>* {
+            width: 100%;
+        }
+    }
+
+    &-title {
+        @include m.svg_4_title;
+
+        @media (min-width: v.$laptop) {
+            margin-bottom: m.px-to-vw(40px);
+        }
+
+        @include m.laptop {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &-subtitle {
+        width: 100%;
+
+        @media (min-width: v.$laptop) {
+            margin-bottom: m.px-to-vw(24px);
+        }
+
+        @include m.laptop {
+            margin-bottom: 18px;
+        }
+
+        h3 {
+            @include m.h3;
+        }
+    }
+
+    &-description,
+    &-subdescription {
+        p {
+            @include m.h6;
+        }
+    }
+
+    &-description {
+        @media (min-width: v.$laptop) {
+            padding-right: m.px-to-vw(24px);
+        }
+
+        @include m.laptop {
+            padding-right: 18px;
+        }
+
+        @include m.tabletlg {
+            padding-right: 0;
+        }
+
+        h3 {
+            @include m.h5;
+
+            @media (min-width: v.$laptop) {
+                margin-block: m.px-to-vw(20px);
+            }
+
+            @include m.laptop {
+                margin-block: 1rem;
+            }
+
+            span {
+                color: v.$gold;
+            }
+        }
+    }
+
+    &-subdescription {
+        @media (min-width: v.$laptop) {
+            padding-right: m.px-to-vw(48px);
+        }
+
+        @include m.laptop {
+            padding-right: 32px;
+        }
+
+        @include m.tabletlg {
+            padding-right: 0;
+        }
+    }
+
+    #field_1_7 {
+        .ginput_complex {
+            margin: 0 !important;
+
+            @media (min-width: v.$laptop) {
+                @include m.grid(2, 2.2222222222vw 1.6666666667vw);
+            }
+
+            @include m.laptop {
+                @include m.grid(2, 26px 18px);
+            }
+
+            @media (max-width: 640px) {
+                grid-template-columns: 100%;
+            }
+        }
+
+        .gform-grid-col {
+            width: 100% !important;
+            padding: 0 !important;
+        }
+
+        .gf_clear_complex {
+            display: none !important;
+        }
+    }
+
+    .gform {
+        &_heading {
+            display: none !important;
+        }
+
+        &_body {
+            width: 100%;
+        }
+
+        &_fields {
+            width: 100%;
+
+            @media (min-width: v.$laptop) {
+                row-gap: m.px-to-vw(32px) !important;
+                column-gap: m.px-to-vw(24px) !important;
+            }
+
+            @include m.laptop {
+                row-gap: 26px !important;
+                column-gap: 18px !important;
+            }
+
+            &>* {
+                width: 100% !important;
+            }
+
+            .gfield {
+                &_required {
+                    display: none !important;
+                }
+
+                &_description {
+                    @media (min-width: v.$laptop) {
+                        font-size: m.px-to-vw(11px) !important;
+                        margin-block-start: m.px-to-vw(8px) !important;
+                    }
+
+                    @include m.laptop {
+                        font-size: 10px !important;
+                        margin-block-start: 6px !important;
+                    }
+                }
+
+                &--type-choice {
+                    legend {
+                        margin: 0;
+                        @extend %placeholder;
+                        color: #52525C;
+
+                        font-family: "Inter", serif !important;
+                    }
+
+                    .ginput_container_radio {
+                        @media (min-width: v.$laptop) {
+                            margin-top: m.px-to-vw(8px);
+                        }
+
+                        @include m.laptop {
+                            margin-top: 6px;
+                        }
+                    }
+
+                    .gfield_radio {
+                        flex-direction: row !important;
+                        justify-content: flex-start;
+                        flex-wrap: wrap;
+
+                        @media (min-width: v.$laptop) {
+                            gap: m.px-to-vw(8px) m.px-to-vw(24px) !important;
+                        }
+
+                        @include m.laptop {
+                            gap: 7px 18px !important;
+                        }
+
+                        @include m.tablet {
+                            gap: 6px 14px !important;
+                        }
+                    }
+
+                    .gchoice {
+                        position: relative;
+                        cursor: pointer;
+
+                        &>* {
+                            cursor: pointer;
+                        }
+
+                        label {
+                            @include m.caption(#47412E);
+                            margin: 0;
+
+                            @media (min-width: v.$laptop) {
+                                padding: m.px-to-vw(4px) m.px-to-vw(8px);
+                            }
+
+                            @include m.laptop {
+                                padding: 3px 6px;
+                            }
+
+                            background: rgba($color: #F1EBD8, $alpha: 0.6);
+                        }
+
+                        input {
+                            position: absolute;
+                            z-index: 2;
+                            inset: 0;
+                            opacity: 0;
+                            @include m.fullWH;
+                            @include m.delete_pseudo;
+
+                            &:checked {
+                                &+label {
+                                    background: #47412E;
+                                    color: v.$white;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                select,
+                input:not([type="checkbox"], [type="radio"]) {
+                    @media (min-width: v.$laptop) {
+                        height: m.px-to-vw(48px) !important;
+                    }
+
+                    @include m.laptop {
+                        height: 44px !important;
+                    }
+                }
+
+                select,
+                input:not([type="checkbox"], [type="radio"]),
+                textarea {
+                    width: 100%;
+                    background: rgba($color: v.$white, $alpha: 0.6);
+                    border-radius: 0;
+                    outline: none;
+                    color: v.$black;
+                    @extend %placeholder;
+
+                    box-shadow: none !important;
+                    border: none;
+                    resize: none;
+
+                    @media (min-width: v.$laptop) {
+                        border-bottom: m.px-to-vw(1px) solid rgba($color: v.$black, $alpha: 0.6);
+                        padding-inline: m.px-to-vw(16px);
+                    }
+
+                    @include m.laptop {
+                        padding-inline: 12px;
+                        border-bottom: 1px solid rgba($color: v.$black, $alpha: 0.6);
+                    }
+
+                    &::placeholder {
+                        opacity: 0.6;
+                    }
+
+                    font-family: "Inter",
+                    serif !important;
+                }
+
+                select {
+                    @include m.flex(flex-start, 0);
+                }
+
+                textarea {
+                    @media (min-width: v.$laptop) {
+                        height: m.px-to-vw(144px) !important;
+                        padding-block: m.px-to-vw(12px) !important;
+                        min-block-size: m.px-to-vw(144px) !important;
+                    }
+
+                    @include m.laptop {
+                        height: 120px !important;
+                        min-block-size: 120px !important;
+                    }
+
+                    @include m.tablet {
+                        height: 90px !important;
+                        min-block-size: 90px !important;
+                    }
+                }
+
+                &:not(.gfield--type-radio) {
+                    label {
+                        color: #52525C !important;
+                        font-weight: 400 !important;
+
+                        @media (min-width: v.$laptop) {
+                            font-size: m.px-to-vw(15px) !important;
+                            margin-bottom: m.px-to-vw(8px) !important;
+                        }
+
+                        @include m.laptop {
+                            font-size: 14px !important;
+                            margin-bottom: 6px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &:not(.bg) {
+        .gform {
+            &_footer {
+                @media (min-width: v.$laptop) {
+                    margin-block: m.px-to-vw(32px) 0 !important;
+                }
+
+                @include m.laptop {
+                    margin-block: 26px 0 !important;
+                }
+
+                span {
+                    display: none !important;
+                }
+
+                background: v.$black !important;
+                position: relative;
+
+                img {
+                    position: absolute;
+                    @include m.centerY;
+
+                    @media (min-width: v.$laptop) {
+                        @include m.square(m.px-to-vw(14px));
+                        right: m.px-to-vw(289.5px);
+                    }
+
+                    @include m.laptop {
+                        // @include m.square(12px);
+                        display: none !important;
+                    }
+                }
+
+                [type="submit"] {
+                    width: 100% !important;
+                    background: transparent !important;
+                    border-radius: 0 !important;
+                    padding-inline: 0 !important;
+                    outline: none !important;
+                    box-shadow: none !important;
+                    font-weight: 400 !important;
+
+                    @media (min-width: v.$laptop) {
+                        text-align: left !important;
+
+                        padding-inline: m.px-to-vw(291.5px) 0 !important;
+                        font-size: m.px-to-vw(16px) !important;
+                        height: m.px-to-vw(58px) !important;
+                    }
+
+                    @include m.laptop {
+                        text-align: center !important;
+
+                        font-size: 16px !important;
+                        height: 52px !important;
+                    }
+                }
+            }
+        }
+    }
+
+    &.bg {
+        .gform {
+
+            &_footer {
+                overflow: hidden;
+
+                @media (min-width: v.$laptop) {
+                    margin-block: m.px-to-vw(32px) 0 !important;
+                }
+
+                @include m.laptop {
+                    margin-block: 26px 0 !important;
+                }
+
+                span {
+                    display: none !important;
+                }
+
+                background: v.$black !important;
+                position: relative;
+
+                img {
+                    position: absolute;
+                    pointer-events: none;
+                    opacity: 0;
+                    @include m.centerY;
+                    @include m.transition;
+
+                    @media (min-width: v.$laptop) {
+                        @include m.square(m.px-to-vw(14px));
+                        right: m.px-to-vw(222.5px);
+                    }
+
+                    @include m.laptop {
+                        // @include m.square(12px);
+                        display: none !important;
+                    }
+                }
+
+                [type="submit"] {
+                    width: 100% !important;
+                    background: transparent !important;
+                    border-radius: 0 !important;
+                    padding-inline: 0 !important;
+                    outline: none !important;
+                    box-shadow: none !important;
+                    font-weight: 400 !important;
+
+                    @media (min-width: v.$laptop) {
+                        text-align: left !important;
+
+                        padding-inline: m.px-to-vw(236.5px) 0 !important;
+                        font-size: m.px-to-vw(16px) !important;
+                        height: m.px-to-vw(58px) !important;
+                    }
+
+                    @include m.laptop {
+                        text-align: center !important;
+
+                        font-size: 16px !important;
+                        height: 52px !important;
+                    }
+                }
+
+                &::before {
+                    position: absolute;
+                    pointer-events: none;
+                    content: '' !important;
+
+                    width: m.px-to-vw(80px);
+                    height: m.px-to-vw(96px);
+                    @include m.transition(.5s);
+                    @include m.centerY;
+                    left: m.px-to-vw(-80px);
+
+                    background: url(../../images/shimmer.png) no-repeat;
+                    background-size: cover;
+                    background-position: center;
+
+                    filter: blur(10px);
+                    opacity: 0.3;
+                }
+
+                &:is(:hover, :focus) {
+                    img {
+                        opacity: 1;
+                    }
+
+                    &::before {
+                        left: 100%;
+                    }
+
+                    [type="submit"] {
+                        @media (min-width: v.$laptop) {
+                            padding-inline: m.px-to-vw(224.5px) 0 !important;
+                        }
+
+                        @include m.laptop {}
+                    }
+                }
+            }
+        }
+    }
+
+    &-curtain{
+        @include m.transition(.2s);
+        opacity: 0;
+        pointer-events: none;
+        user-select: none;
+
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        @include m.fullWH;
+        @include m.flex(center, 0);
+        flex-direction: column;
+
+        &>*{
+            text-align: center;
+            margin-inline: auto;
+        }
+        svg{
+            @media (min-width: v.$laptop){
+                width: m.px-to-vw(64px);
+                margin-bottom: m.px-to-vw(32px);
+            }
+            @include m.laptop{
+                width: 56px;
+                margin-bottom: 24px;
+            }
+            height: auto;
+            object-fit: contain;
+            object-position: center;
+        }
+        h3{
+            @include m.h4(black, 500);
+        }
+        p{
+            @include m.h5;
+        }
+    }
+
+    &.sended{
+        .get_in_touch{
+            &-curtain{
+                opacity: 1;
+                pointer-events: all;
+                user-select: all;
+            }
+        }
+    }
+
+}

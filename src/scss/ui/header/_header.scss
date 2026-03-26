@@ -1,0 +1,262 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    @include m.transition(.4s);
+
+    @media (min-width: v.$laptop){
+        padding-block: m.px-to-vw(13px);
+        border-bottom: m.px-to-vw(1px) solid rgba($color: v.$white, $alpha: 0.1);   
+    }
+    @include m.laptop{
+        padding-block: 12px;
+        border-bottom: 1px solid rgba($color: v.$white, $alpha: 0.1);
+    }
+
+    &_nav{
+        @include m.laptop{
+            position: absolute;
+            top: 0;
+            right: m.px-to-vw(-400px);
+            height: 100vh;
+            width: min(100%, 400px);
+            background: v.$gray;
+            z-index: 102;
+            opacity: 0;
+            padding-block: 3rem 2rem;
+        }
+        @media (max-width: 480px){
+            width: 84%;
+            right: -400px;
+        }
+    }
+    &_submenu{
+        @include m.flex(flex-end, 1rem);
+    }
+    &_burger{
+        @media (min-width: v.$laptop){
+            display: none;
+        }
+        @include m.laptop{
+            width: 40px;
+            height: 30px;
+            padding: 0;
+            padding: 4px 0;
+            margin: 0;
+            background: none;
+            border: none;
+            @include m.flex(space-between, 0);
+            flex-direction: column;
+        }
+
+        &>*{
+            pointer-events: none;
+            @include m.transition(.4s);
+        }
+        svg{
+            @include m.fullWH;
+            object-fit: contain;
+            object-position: center;
+        }
+        span{
+            display: block;
+            background: v.$black;
+            opacity: 0.8;
+            border-radius: 10px;
+            width: 84%;
+            margin-inline: auto;
+            height: 4px;
+        }
+    }
+    &_menu{
+        @include m.transition;
+        @include m.laptop{
+            opacity: 0;
+            pointer-events: none;
+        }
+        &>*{
+            @include m.transition;
+            @include m.laptop{
+                pointer-events: none;
+            }
+        }
+        &-bg{
+            @media (min-width: v.$laptop){
+                display: none;
+            }
+            @include m.laptop{
+                @include m.fullWH;
+                position: absolute;
+                z-index: 101;
+                inset: 0;
+                background: v.$black;
+                opacity: 0;
+            }
+        }
+        @include m.laptop{
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 100;
+        }
+        &.active{
+            opacity: 1;
+            pointer-events: all;
+            &>*{
+                pointer-events: all;
+            }
+            .header{
+                &_menu{
+                    &-bg{
+                        opacity: 0.3;
+                    }
+                }
+                &_nav{
+                    right: 0;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    &_grid{
+        display: grid;
+        align-items: center;
+        @media (min-width: v.$laptop){
+            grid-template-columns: 1fr m.px-to-vw(87px) 1fr;
+        }
+        @include m.laptop{
+            grid-template-columns: 85px 1fr;
+        }
+        @media (max-width: 342px){
+            grid-template-columns: 90px 1fr;
+        }
+
+        &>*{
+            width: 100%;
+        }
+    }
+    &_logo{
+        img{
+            @include m.transition;
+            filter: none;
+        }
+    }
+    ul{
+        list-style: none;
+    }
+    .ul_menu{
+        @media (min-width: v.$laptop){
+            @include m.flex(flex-start, m.px-to-vw(20px));
+        }
+        @include m.laptop{
+            @include m.flex(center, 1.05rem);
+            flex-direction: column;
+        }
+
+        &>li:last-child{
+            @media (min-width: 505px){
+                display: none;
+            }
+        }
+
+        a{
+            font-weight: 400;
+            font-style: normal;
+            @media (min-width: v.$laptop){
+                line-height: 160%;
+                padding-block: m.px-to-vw(2.2px);
+                font-size: m.px-to-vw(15px);
+            }
+            @include m.laptop{
+                line-height: 1.3em;
+                font-size: 17px;
+                padding-block: 2px;
+            }
+            color: v.$black;
+        }
+    }
+    .actions{
+        @media (min-width: v.$laptop){
+            @include m.flex(flex-end, m.px-to-vw(16px));
+        }
+        @include m.laptop{
+            @include m.flex(flex-end, 12px);
+        }
+
+        li{
+            &:nth-child(odd){
+                a{
+                    @include m.button(89px, v.$black, v.$white, 'small');
+
+                    @media (min-width: v.$laptop){
+                        border: m.px-to-vw(1px) solid rgba($color: v.$black, $alpha: 0.1);
+                    }
+                    @include m.laptop{
+                        border: 1px solid rgba($color: v.$black, $alpha: 0.1);
+                    }
+                }
+
+                @media (max-width: 500px){
+                    display: none;
+                }
+            }
+            &:nth-child(even){
+                a{
+                    @include m.button(155px, v.$white, v.$black, 'small');
+                    border-color: v.$black !important;
+
+                    &::after{
+                        filter: none;
+                    }
+
+                    @include m.laptop{
+                        padding-left: 15px !important;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 342px){
+            display: none;
+        }
+    }
+    &.scrolled{
+        background: v.$gray;
+        border-color: rgba($color: v.$black, $alpha: 0.1);
+    }
+    &:not(.scrolled){
+
+        background: rgba($color: v.$white, $alpha: 0.01);
+        backdrop-filter: blur(8px);
+
+        .ul_menu{
+            a{
+                @media (min-width: v.$laptop){
+                    color: v.$white;
+                }
+                @include m.laptop{
+                    color: v.$black;
+                }
+            }
+        }
+
+        .header{
+            &_burger{
+                span{
+                    background: v.$white;
+                }
+            }
+            &_logo{
+                img{
+                    filter: invert(1);
+                }
+            }
+        }
+
+    }
+}

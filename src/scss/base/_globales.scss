@@ -1,0 +1,221 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+html{
+    overflow-x: hidden;
+}
+
+body{
+    font-size: 16px;
+}
+
+picture{
+    display: block;
+}
+
+.w-100{width: 100%;}
+.h-100{height: 100%;}
+.wh-100{
+    @extend .w-100;
+    @extend .h-100;
+}
+
+img, svg, path, g{
+    vertical-align: top;
+}
+
+img{
+    height: auto;
+}
+
+.relative{
+    position: relative;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.overflow{
+    overflow: hidden;
+}
+
+a, button, input[type="submit"]{
+    cursor: pointer;
+    @include m.transition;
+}
+
+main, section, header, footer, aside{
+    width: 100%;
+}
+
+a{
+    text-decoration: none;
+}
+
+textarea, button, input, select, option {
+    outline: none;
+}
+
+.container{
+    @media (min-width: v.$laptop){
+        width: min(100%, 94.444vw);
+    }
+    @include m.laptop{
+        width: 92%;
+    }
+    margin-inline: auto;
+}
+
+video{
+    display: block;
+    width: 100%;
+    aspect-ratio: 16/9;
+
+    &::-webkit-media-controls-fullscreen-button{
+        display: none;
+    }
+}
+
+.animation_title{
+    @media (min-width: v.$laptop){
+        overflow-y: hidden;
+    }
+    h1, h2, h4, h5, h6{
+        @include m.h2;
+        width: fit-content;
+
+        @media (min-width: v.$laptop){
+            // padding-bottom: m.px-to-vw(12px);
+        }
+    }
+    h3{
+        @include m.h3;
+    }
+    h1, h2, h3, h4, h5, h6{
+        width: fit-content;
+
+        
+        div, span:not(.let){
+            display: inline-flex;
+            position: relative;
+            color: v.$gold;
+            height: fit-content;
+            overflow: hidden;
+
+            @media (min-width: v.$laptop){
+                min-height: m.px-to-vw(82px);
+                min-width: m.px-to-vw(58px);
+                padding-top: m.px-to-vw(10px);
+            }
+            @include m.laptop{
+                min-height: 76px;
+                min-width: 54px;
+            }
+            @include m.notebook{
+                min-height: auto;
+            }
+        }
+        span.let{
+            position: relative;
+            color: v.$gold;
+        }
+        svg{
+            position: absolute;
+        }
+    }
+}
+
+.d-none{
+    display: none !important;
+}
+
+.content-terms{
+    @include m.above;
+    @include m.padding_above_header();
+    h1{
+        @include m.h2;
+        text-align: left;
+
+        @media (min-width: v.$laptop){
+            margin-bottom: m.px-to-vw(32px);
+        }
+        @include m.laptop{
+            margin-bottom: 24px;
+        }
+
+        span{
+            color: v.$gold;
+        }
+    }
+    &-box{
+        width: 100%;
+
+        @media (min-width: v.$laptop){
+            padding-inline: 5%;
+        }
+        @include m.laptop{
+            padding-inline: 2rem;
+        }
+        @include m.notebook{
+            padding-inline: 0;
+        }
+
+        ul, ol{
+            @media (min-width: v.$laptop){
+                padding-left: m.px-to-vw(21px);
+            }
+            @include m.laptop{
+                padding-left: 18px;
+            }
+            @include m.notebook{
+                padding-left: 16px;
+            }
+        }
+        p, li, span{
+            @include m.body(v.$black);
+        }
+        &>*{
+            &:not(:last-child){
+                @media (min-width: v.$laptop){
+                    margin-bottom: m.px-to-vw(18px);
+                }
+                @include m.laptop{
+                    margin-bottom: 16px;
+                }
+                @include m.notebook{
+                    margin-bottom: 12px;
+                }
+            }
+        }
+        h4{
+            @include m.body(v.$black);
+            font-weight: bold;
+        }
+    }
+}
+
+.under_offer{
+    display: block !important;
+    @media (min-width: v.$laptop){
+        font-size: m.px-to-vw(15px);
+        padding: m.px-to-vw(12px) m.px-to-vw(15px) m.px-to-vw(11px);
+        border-bottom: m.px-to-vw(1px) solid rgba($color: v.$white, $alpha: 0.1);
+        line-height: 160%;
+    }
+    @include m.laptop{
+        border-bottom: 1px solid rgba($color: v.$white, $alpha: 0.1);
+        font-size: 14px;
+        padding: 10px 13px 9px;
+    }
+    opacity: 0.9;
+    font-style: normal;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+    bottom: 0;
+    left: 0;
+    background: rgba($color: v.$white, $alpha: 0.01);
+    font-weight: 700;
+    color: v.$white;
+    aspect-ratio: auto !important;
+}

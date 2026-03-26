@@ -1,0 +1,36 @@
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+    font-family: "Poppins";
+    src: url(../../fonts/Poppins.otf);
+    font-display: swap;
+}
+
+*{
+    font-family: "Poppins", serif;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url(../../fonts/Inter.ttf);
+    font-display: swap;
+}
+
+// Medidas de Media Queries
+$phone: 480px;
+$tablet: 768px;
+$tabletlg: 942px;
+$notebook: 1024px;
+$laptop: 1200px;
+$desktop: 1400px;
+$pc: 1680px;
+$tv: 1900px;
+
+// Colores
+$white: #ffffff;
+$gray: #F2F0EE;
+$black: #000000;
+$gold: #9B8329;
+$gold2: #DCCC9D;
+$yellow: #F1EBD8;
+$green: #47412E;

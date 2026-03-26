@@ -1,0 +1,51 @@
+# ── Node / Gulp ──────────────────────────────────────────
+src/node_modules/
+src/node_modules
+node_modules/
+
+# Build artifacts (compiled by Gulp, not source)
+public/css/
+public/js/
+
+# Gulp cache
+.cache/
+.sass-cache/
+
+# Sourcemaps generated during dev
+public/**/*.map
+src/**/*.map
+
+# ── Editor & OS ──────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# ── Logs ─────────────────────────────────────────────────
+*.log
+cron_log.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── WordPress / PHP ──────────────────────────────────────
+# Ignore config/environment files if present at theme level
+*.env
+.env.*
+wp-config.php
+
+# Ignore any local override files
+local-config.php
+
+# ── Figma exports (binary assets not tracked) ────────────
+figma/
+
+# ── Misc ─────────────────────────────────────────────────
+*.zip
+*.tar.gz
+*.bak
+*.swp
+*~

@@ -1,0 +1,100 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.footer{
+    position: relative;
+    z-index: 4;
+    background: v.$black;
+    @media (min-width: v.$laptop){
+        padding-block: m.px-to-vw(40px);
+    }
+    @include m.laptop{
+        padding-block: 2rem;
+    }
+    &_top, &_bottom{
+        @include m.flex(space-between, 1.75rem 2.75rem);
+        align-items: flex-end;
+    }
+    &_logo{
+        @media (min-width: v.$laptop){
+            width: m.px-to-vw(133px);
+        }
+        @include m.laptop{
+            width: 121px;
+        }
+
+        img{
+            filter: invert(1);
+        }
+    }
+    .line{
+        @media (min-width: v.$laptop){
+            height: m.px-to-vw(1px);
+            margin-block: m.px-to-vw(32px);
+        }
+        @include m.laptop{
+            height: 1px;
+            margin-block: 26px;
+        }
+        background: v.$white;
+        opacity: 0.3;
+    }
+    &_top{
+        @include m.notebook{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.75rem;
+        }
+
+        ul{
+            @media (min-width: v.$laptop){
+                @include m.flex(flex-end, m.px-to-vw(48px));
+            }
+            @include m.laptop{
+                @include m.flex(flex-end, 10px 2rem);
+            }
+            @include m.notebook{
+                justify-content: center;
+                gap: 8px 2rem;
+            }
+        }
+        a{
+            @include m.body(v.$white);
+        }
+    }
+    &_bottom{
+        opacity: 0.6;
+
+        @include m.tablet{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        p, a{
+            color: v.$white;
+            font-weight: 400;
+            @media (min-width: v.$laptop){
+                font-size: m.px-to-vw(14px);
+                line-height: 160%;
+            }
+            @include m.laptop{
+                font-size: 13px;
+                line-height: 1.4em;
+            }
+        }
+        a{
+            text-decoration: underline;
+        }
+        ul{
+            @media (min-width: v.$laptop){
+                @include m.flex(flex-end, m.px-to-vw(32px));
+            }
+            @include m.laptop{
+                @include m.flex(flex-end, 24px);
+            }
+        }
+    }
+}

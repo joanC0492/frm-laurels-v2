@@ -1,0 +1,565 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+%li {
+    li {
+        width: 100%;
+        list-style: none;
+
+        @media (min-width: v.$laptop) {
+            display: grid;
+            grid-template-columns: m.px-to-vw(14.83px) 1fr;
+            grid-gap: m.px-to-vw(10px);
+            align-items: center;
+            padding-bottom: m.px-to-vw(16px);
+        }
+
+        @include m.laptop {
+            @include m.flex(flex-start, 7px);
+            flex-wrap: nowrap;
+            padding-bottom: 12px;
+        }
+
+        @include m.tablet {
+            padding-bottom: 7px;
+        }
+
+        div,
+        p {
+            width: 100%;
+        }
+
+        p {
+            font-weight: 400;
+            color: black;
+
+            @media (min-width: v.$laptop) {
+                font-size: m.px-to-vw(18px);
+                line-height: 1.6em;
+            }
+
+            @include m.laptop {
+                font-size: 16px;
+                line-height: 1.3em;
+            }
+        }
+
+        svg {
+            @media (min-width: v.$laptop) {
+                width: 100%;
+            }
+
+            @include m.laptop {
+                min-width: 12.8px;
+                width: 12.8px;
+            }
+
+            height: auto;
+            object-fit: contain;
+            object-position: center;
+        }
+    }
+}
+
+.list_and_image,
+.becoming,
+.jobs {
+    @include m.above;
+    @include m.padding_block_section;
+}
+
+.list_and_image {
+    &-grid {
+        @media (min-width: v.$laptop) {
+            display: grid;
+            grid-template-columns: 1fr m.px-to-vw(648px);
+            align-items: center;
+            grid-gap: m.px-to-vw(32px);
+        }
+
+        @include m.laptop {
+            @include m.grid(2, 28px);
+            align-items: center;
+        }
+
+        @media (max-width: 1100px) {
+            grid-template-columns: 100%;
+        }
+
+        &>* {
+            width: 100%;
+        }
+    }
+
+    &-firstone {
+        @media (max-width: 1100px) {
+            order: 2;
+        }
+    }
+
+    &-col {
+        &>img {
+            display: block;
+
+            @media (max-width: 1100px) {
+                max-width: 500px;
+            }
+        }
+
+        h2 {
+            @include m.h4(black, 500);
+
+            @media (min-width: v.$laptop) {
+                margin-bottom: m.px-to-vw(24px);
+            }
+
+            @include m.laptop {
+                margin-bottom: 18px;
+            }
+        }
+
+        &>p {
+            @include m.h6;
+
+            @media (min-width: v.$laptop) {
+                margin-top: m.px-to-vw(34px);
+            }
+
+            @include m.laptop {
+                margin-top: 26px;
+            }
+        }
+    }
+
+    &-list {
+        width: 100%;
+
+        @media (min-width: v.$tablet) {
+            column-count: 2;
+        }
+
+        @media (min-width: v.$laptop) {
+            column-gap: m.px-to-vw(32px);
+            padding-right: m.px-to-vw(32px);
+        }
+
+        @include m.laptop {
+            column-gap: 24px;
+            padding-right: 0;
+        }
+
+        @extend %li;
+    }
+}
+
+.becoming {
+    h2 {
+        @include m.h3;
+
+        @media (min-width: v.$laptop) {
+            margin-block: m.px-to-vw(40px);
+        }
+
+        @include m.laptop {
+            margin-block: 28px;
+        }
+    }
+
+    &_steps {
+        @media (min-width: v.$laptop) {
+            @include m.grid(3, m.px-to-vw(32px));
+        }
+
+        @include m.laptop {
+            @include m.grid(3, 24px);
+        }
+
+        @media (max-width: 1100px) {
+            grid-template-columns: 100%;
+            grid-gap: 18px;
+        }
+
+        div {
+            width: 100%;
+            background: rgba($color: v.$white, $alpha: 0.4);
+
+            @media (min-width: v.$laptop) {
+                padding: m.px-to-vw(32px);
+            }
+
+            @include m.laptop {
+                padding: 24px;
+            }
+        }
+
+        h3 {
+            @include m.h5;
+
+            @media (min-width: v.$laptop) {
+                margin-bottom: m.px-to-vw(24px);
+            }
+
+            @include m.laptop {
+                margin-bottom: 16px;
+            }
+
+            span {
+                display: inline-block;
+                color: v.$gold;
+
+                @media (min-width: v.$laptop) {
+                    margin-right: m.px-to-vw(16px);
+                }
+
+                @include m.laptop {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        h4 {
+            @include m.h6;
+        }
+
+        p {
+            @media (min-width: v.$laptop) {
+                margin-top: m.px-to-vw(12px);
+            }
+
+            @include m.laptop {
+                margin-top: 8px;
+            }
+
+            @include m.body(black);
+        }
+    }
+
+    &_col{
+        width: 100%;
+    }
+    &-list{
+        @media (min-width: 1100px){
+            position: sticky;
+            top: 76px;
+        }
+        @media (min-width: v.$laptop){
+            top: m.px-to-vw(66px) !important;
+        }
+        
+        li{
+            list-style: none;
+            cursor: pointer;
+            &>*{
+                pointer-events: none;
+            }
+            @media (min-width: v.$laptop){
+                @include m.flex(flex-start, m.px-to-vw(12px));
+                flex-wrap: nowrap;
+                min-height: m.px-to-vw(48px);
+            }
+            @include m.laptop{
+                @include m.flex(flex-start, 8px);
+                flex-wrap: nowrap;
+            }
+            svg{
+                @media (min-width: v.$laptop){
+                    width: m.px-to-vw(32px);
+                }
+                @include m.laptop{
+                    width: 26px;
+                }
+                height: auto;
+                object-fit: contain;
+                object-position: center;
+            }
+            p{
+                @include m.h5;
+            }
+
+            &:not(:last-child){
+                @media (min-width: v.$laptop){
+                    margin-bottom: m.px-to-vw(32px);
+                }
+                @include m.laptop{
+                    margin-bottom: 26px;
+                }
+                @include m.tablet{
+                    margin-bottom: 22px;
+                }
+            }
+        }
+    }
+    &-content{
+        width: 100%;
+        p{
+            &:first-child{
+                @include m.h6;
+            }
+            &:not(:first-child){
+                @include m.body(black);
+            }
+            &:not(:last-child){
+                @media (min-width: v.$laptop){
+                    margin-bottom: m.px-to-vw(24px);
+                }
+                @include m.laptop{
+                    margin-bottom: 17px;
+                }
+            }
+        }
+    }
+    &_grid {
+        @include m.grid(2, 0);
+        align-items: flex-start;
+        
+        @media (max-width: 1100px){
+            grid-template-columns: 100%;
+            grid-gap: 36px;    
+        }
+
+        @media (min-width: v.$laptop){
+            margin-top: m.px-to-vw(48px);
+        }
+        @include m.laptop{
+            margin-top: 36px;
+        }
+        @include m.tablet{
+            margin-top: 26px;
+        }
+
+        &>div{
+            @media (min-width: v.$laptop){
+                padding: m.px-to-vw(32px);
+                padding-bottom: 0;
+            }
+            @include m.laptop{
+                padding: 26px;
+                padding-bottom: 0;
+            }
+            @media (max-width: 1100px){
+                padding: 0;
+            }
+        }
+
+        &[data-state="1"]{
+            .becoming{
+                &-list{
+                    li:not(:nth-child(1)){
+                        svg{
+                            display: none;
+                        }
+                        p{
+                            opacity: 0.6;
+                        }
+                    }
+                }
+                &-content{
+                    &:not(:nth-child(1)){
+                        display: none;
+                    }
+                }
+            }
+        }
+        &[data-state="2"]{
+            .becoming{
+                &-list{
+                    li:not(:nth-child(2)){
+                        svg{
+                            display: none;
+                        }
+                        p{
+                            opacity: 0.6;
+                        }
+                    }
+                }
+                &-content{
+                    &:not(:nth-child(2)){
+                        display: none;
+                    }
+                }
+            }
+        }
+        &[data-state="3"]{
+            .becoming{
+                &-list{
+                    li:not(:nth-child(3)){
+                        svg{
+                            display: none;
+                        }
+                        p{
+                            opacity: 0.6;
+                        }
+                    }
+                }
+                &-content{
+                    &:not(:nth-child(3)){
+                        display: none;
+                    }
+                }
+            }
+        }
+        &[data-state="4"]{
+            .becoming{
+                &-list{
+                    li:not(:nth-child(4)){
+                        svg{
+                            display: none;
+                        }
+                        p{
+                            opacity: 0.6;
+                        }
+                    }
+                }
+                &-content{
+                    &:not(:nth-child(4)){
+                        display: none;
+                    }
+                }
+            }
+        }
+        &[data-state="5"]{
+            .becoming{
+                &-list{
+                    li:not(:nth-child(5)){
+                        svg{
+                            display: none;
+                        }
+                        p{
+                            opacity: 0.6;
+                        }
+                    }
+                }
+                &-content{
+                    &:not(:nth-child(5)){
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.jobtype {
+    @media (min-width: v.$laptop) {
+        display: grid;
+        grid-template-columns: 1fr m.px-to-vw(432px);
+        grid-gap: m.px-to-vw(24px);
+
+        height: m.px-to-vw(551px);
+    }
+
+    @include m.laptop {
+
+    }
+
+    &>* {
+        position: relative;
+        overflow: hidden;
+        @media (min-width: v.$laptop) {
+            @include m.fullWH;
+        }
+
+        @include m.laptop {}
+    }
+
+    .pay,
+    &-lists>div>p {
+        @include m.h6;
+    }
+
+    &-info {
+        @media (min-width: v.$laptop) {
+            @include m.flex(center, m.px-to-vw(8px));
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @include m.laptop {
+            @include m.flex(center, 5.4px);
+            flex-direction: column;
+            align-items: flex-start;
+            padding-block: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        @include m.tablet {
+            padding-block: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        background: rgba($color: v.$white, $alpha: 0.4);
+
+        @media (min-width: v.$laptop) {
+            padding-left: m.px-to-vw(32px);
+        }
+
+        @include m.laptop {
+            padding-inline: 26px;
+        }
+
+        &>p {
+            @include m.body(black);
+        }
+        h2 {
+            @include m.h3;
+        }
+        h3 {
+            @include m.h5;
+        }
+    }
+
+    &-lists {
+        width: 100%;
+
+        @media (min-width: v.$laptop) {
+            @include m.grid(2, m.px-to-vw(24px));
+            padding-top: m.px-to-vw(16px);
+        }
+
+        @include m.laptop {
+            @include m.grid(2, 18px);
+            padding-top: 11.6px;
+        }
+
+        @include m.tablet {
+            grid-template-columns: 100%;
+        }
+
+        ul {
+            @media (min-width: v.$laptop) {
+                margin-top: m.px-to-vw(24px);
+                padding-left: m.px-to-vw(16px);
+            }
+
+            @include m.laptop {
+                margin-top: 18px;
+                padding-left: 10px;
+            }
+            
+            @include m.tablet {
+                margin-top: 14px;
+                padding-left: 0;
+            }
+
+            @extend %li;
+        }
+    }
+
+    video {
+        aspect-ratio: auto;
+        object-fit: cover;
+        object-position: center;
+
+        @media (min-width: v.$laptop) {
+            position: absolute;
+            left: 0;
+            top: m.px-to-vw(-93px);
+            // height: m.px-to-vw(551px);
+        }
+
+        @include m.laptop {
+            max-width: 500px;
+            margin-inline: auto;
+        }
+    }
+}

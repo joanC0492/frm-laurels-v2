@@ -1,0 +1,577 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.process{
+    h2{
+        @include m.h3;
+        text-align: center;
+
+        @media (min-width: v.$laptop){
+            margin-bottom: m.px-to-vw(60px);
+        }
+        @include m.laptop{
+            margin-bottom: 2.5rem;
+        }
+        @include m.tablet{
+            margin-bottom: 1.9rem;
+        }
+        span{
+            color: v.$gold;
+        }
+    }
+
+    &_timeline{
+        width: 100%;
+        position: relative;
+
+        &::before{
+            position: absolute;
+            content: '';
+            opacity: 0.1;
+            background: v.$black;
+            
+            @media (min-width: v.$notebook){
+                @include m.centerX;
+            }
+            
+            @media (min-width: v.$laptop){
+                width: m.px-to-vw(1px);
+                height: m.px-to-vw(2110px);
+                top: m.px-to-vw(13px);
+            }
+            @include m.laptop{
+                width: 1px;
+                height: 2000px;
+                top: 9px;
+            }
+            @include m.notebook{
+                left: 5px;
+                top: 0;
+                height: 100%;
+            }
+        }
+    }
+    &_item{
+        width: 100%;
+        position: relative;
+
+        @media (min-width: v.$laptop){
+            @include m.grid(2, m.px-to-vw(24px));
+        }
+        @include m.laptop{
+            @include m.grid(2, 18px);
+        }
+        @include m.notebook{
+            grid-template-columns: 100%;
+        }
+
+        &:not(:last-child){
+            @media (min-width: v.$laptop){
+                margin-bottom: m.px-to-vw(120px);
+            }
+            @include m.laptop{
+                margin-bottom: 80px;
+            }
+        }
+
+        &>*{
+            width: 100%;
+
+            &:empty{
+                @include m.notebook{
+                    display: none;
+                }
+            }
+        }
+
+        &:nth-child(odd){
+            .process_item{
+                &-div{
+                    @media (min-width: v.$laptop){
+                        padding-left: m.px-to-vw(56px);
+                    }
+                    @include m.laptop{
+                        padding-left: 42px;
+                    }
+                    @include m.notebook{
+                        padding-left: 36px;
+                    }
+
+                    &::before{
+                        @media (min-width: v.$laptop){
+                            right: calc(100% + m.px-to-vw(4px));
+                        }
+                        @include m.laptop{
+                            right: calc(100% + 2.25px);
+                        }
+                        @include m.notebook{
+                            right: auto;
+                            left: 0;
+                        }
+                    }
+                }
+            }
+        }
+        &:nth-child(even){
+            .process_item{
+                &-div{
+                    order: -1;
+                    @media (min-width: v.$laptop){
+                        padding-right: m.px-to-vw(56px);
+                    }
+                    @include m.laptop{
+                        padding-right: 42px;
+                    }
+                    @include m.notebook{
+                        padding-right: 0;
+                        padding-left: 36px;
+                    }
+
+                    &::before{
+                        @media (min-width: v.$laptop){
+                            left: calc(100% + m.px-to-vw(4px));
+                        }
+                        @include m.laptop{
+                            left: calc(100% + 2.25px);
+                        }
+                        @include m.notebook{
+                            left: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        &-div{
+            position: relative;
+            &>*{
+                width: 100%;
+            }
+            h3{
+                @include m.h4(v.$black, 500);
+
+                span, strong, b{
+                    display: block;
+                }
+            }
+
+            &::before{
+                position: absolute;
+                content: '';
+                background: v.$gold;
+                border-radius: 50%;
+                
+                @media (min-width: v.$laptop){
+                    @include m.square(m.px-to-vw(16px));
+                    top: m.px-to-vw(13px);
+                }
+                @include m.laptop{
+                    @include m.square(13px);
+                    top: 9px;
+                }
+                @include m.notebook{
+                    top: 11px;
+                }
+            }
+        }
+        &-description{
+            p{
+                @include m.body(v.$black);
+
+                @include m.laptop{
+                    line-height: 1.4em;
+                }
+            }
+
+            @media (min-width: v.$laptop){
+                margin-block: m.px-to-vw(24px);
+                padding-bottom: m.px-to-vw(24px);
+                border-bottom: m.px-to-vw(1px) solid rgba($color: v.$black, $alpha: 0.1);
+            }
+            @include m.laptop{
+                margin-block: 17px;
+                padding-bottom: 17px;
+                border-bottom: 1px solid rgba($color: v.$black, $alpha: 0.1);
+            }
+            @include m.tablet{
+                margin-block: 14px;
+                padding-bottom: 14px;
+            }
+        }
+        &-actions{
+            &>*{
+                &:not(:last-child){
+                    @media (min-width: v.$laptop){
+                        margin-bottom: m.px-to-vw(24px);
+                    }
+                    @include m.laptop{
+                        margin-bottom: 17px;
+                    }
+                    @include m.tablet{
+                        margin-bottom: 14px;
+                    }
+                }
+            }
+            p{
+                @include m.h6;
+            }
+            a{
+                &:not([class]){
+                    @include m.h6;
+                    text-decoration: underline;
+                }
+                &.btn{
+                    @include m.button(fit-content, v.$white, v.$black);
+                    &::after{
+                        filter: none;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+.content{
+    @include m.above;
+    
+    &:not(.prime, .prime2){
+        @media (min-width: v.$laptop){
+            padding-block: m.px-to-vw(150px);
+        }
+        @include m.laptop{
+            padding-block: 120px;
+        }
+        @include m.notebook{
+            padding-block: 84px;
+        }
+        @include m.tablet{
+            padding-block: 48px;
+        }
+    }
+    &.prime{
+        @media (min-width: v.$laptop){
+            padding-block: m.px-to-vw(132px) m.px-to-vw(75px);
+        }
+        @include m.laptop{
+            padding-block: 102px 45px;
+        }
+        @include m.notebook{
+            padding-block: 68px 30px;
+        }
+        @include m.tablet{
+            padding-block: 46px 24px;
+        }
+
+        @include m.animation_for_title;
+    }
+    &.prime2{
+        @media (min-width: v.$laptop){
+            padding-block: m.px-to-vw(75px) m.px-to-vw(150px);
+        }
+        @include m.laptop{
+            padding-block: 45px 120px;
+        }
+        @include m.notebook{
+            padding-block: 30px 84px;
+        }
+        @include m.tablet{
+            padding-block: 24px 46px;
+        }
+    }
+
+
+    &_row{
+        @media (min-width: v.$laptop){
+            @include m.grid(2, m.px-to-vw(24px));
+        }
+        @include m.laptop{
+            @include m.grid(2, 18px);
+        }
+        @include m.notebook{
+            grid-template-columns: 100%;
+            gap: 1.5rem;
+        }
+    }
+    &-col{
+        width: 100%;
+
+        &>*{
+            &:not(:last-child){
+                @media (min-width: v.$laptop){
+                    margin-bottom: m.px-to-vw(24px);
+                }
+                @include m.laptop{
+                    margin-bottom: 17px;
+                }
+                @include m.tablet{
+                    margin-bottom: 14px;
+                }
+            }
+        }
+
+        &:nth-child(2){
+            opacity: 0;
+            @include m.transition(.8s);
+        }
+
+        p, li{
+            @include m.body(v.$black);
+        }
+        a{
+            @media (min-width: v.$laptop){
+                margin-top: m.px-to-vw(48px);
+            }
+            @include m.laptop{
+                margin-top: 2rem;
+            }
+
+            @include m.button(190px, v.$white, v.$black);
+            &::after{
+                filter: none;
+            }
+        }
+        ul, ol{
+            list-style: none;
+            width: 100%;
+
+            @media (min-width: v.$laptop){
+                max-width: m.px-to-vw(450px);
+            }
+            @include m.laptop{
+                max-width: 360px;
+            }
+        }
+        li{
+            position: relative;
+
+            @media (min-width: v.$laptop){
+                padding-left: m.px-to-vw(20px);
+            }
+            @include m.laptop{
+                padding-left: 16px;
+            }
+
+            &::before{
+                position: absolute;
+                content: '';
+                @media (min-width: v.$laptop){
+                    width: m.px-to-vw(12px);
+                    height: m.px-to-vw(24px);
+                    top: m.px-to-vw(2px);
+                }
+                @include m.laptop{
+                    width: 10px;
+                    height: 20px;
+                    top: 1px;
+                }
+                left: 0;
+                // @include m.centerY;
+                background: url(../../images/leaf.svg) no-repeat;
+                background-size: contain;
+                background-position: center;
+            }
+
+            &:not(:last-child){
+                @media (min-width: v.$laptop){
+                    margin-bottom: m.px-to-vw(5px);
+                }
+                @include m.laptop{
+                    margin-bottom: 3px;
+                }
+            }
+        }
+    }
+    .title1, .title2{
+        overflow: hidden;
+        &>*{
+            opacity: 0;
+            position: relative;
+            transform: rotate(25deg);
+            @include m.transition(.8s);
+
+            @media (min-width: v.$laptop){
+                bottom: m.px-to-vw(-320px);
+            }
+            @include m.laptop{
+                bottom: -320px;
+            }
+        }
+    }
+    .title1{
+        @media (min-width: v.$laptop){
+            max-width: m.px-to-vw(500px);
+        }
+        @include m.laptop{
+            max-width: 420px;
+        }
+        @include m.notebook{
+            max-width: 100%;
+        }
+    }
+    .title2{
+        @media (min-width: v.$laptop){
+            max-width: m.px-to-vw(575px);
+        }
+        @include m.laptop{
+            max-width: 490px;
+        }
+        @include m.notebook{
+            max-width: 100%;
+        }
+    }
+    h2{
+        @include m.h2();
+        span, strong, b{
+            color: v.$gold;
+        }
+    }
+
+    &.in_animation_progress{
+        .content{
+            &-col{
+                &:nth-child(2){
+                    opacity: 1;
+                }
+            }
+        }
+        .title1, .title2{
+            &>*{
+                bottom: 0;
+                opacity: 1;
+                transform: none;
+            }
+        }
+    }
+}
+
+.our_specialism{
+    @include m.above;
+
+    @media (min-width: v.$laptop){
+        padding-block: m.px-to-vw(50px) m.px-to-vw(120px);
+    }
+    @include m.laptop{
+        padding-block: 20px 90px;
+    }
+
+    &_title{
+        @include m.svg_4_title;
+
+        span{
+            display: inline-block;
+        }
+    }
+    &-grid{
+        @media (min-width: v.$laptop){
+            @include m.grid(2, m.px-to-vw(24px));
+        }
+        @include m.laptop{
+            @include m.grid(2, 18px);
+        }
+        @media (max-width: 900px){
+            grid-template-columns: 100%;
+            grid-gap: 1.5rem;
+        }
+    }
+    &-video{
+        @media (min-width: v.$laptop){
+            margin-bottom: m.px-to-vw(24px);
+        }
+        @include m.laptop{
+            margin-bottom: 18px;
+        }
+    }
+    &-info{
+        .toUp{
+            @include m.flex(space-between, 1rem 2rem);
+            flex-wrap: nowrap;
+            
+            @media (min-width: v.$laptop){
+                transform: translateY(m.px-to-vw(-54px));
+            }
+            @include m.laptop{
+                transform: translateY(-46px);
+            }
+            @media (max-width: 900px){
+                transform: none;
+            }
+
+            @include m.transition(.45s);
+
+            div{
+                @media (min-width: v.$laptop){
+                    @include m.square(m.px-to-vw(48px));
+                    @include m.flex(center, 0);
+                    padding: m.px-to-vw(14px);
+                }
+                @include m.laptop{
+                    @include m.square(36px);
+                    @include m.flex(center, 0);
+                    padding: 9px;
+                }
+                @media (max-width: 385px){
+                    @include m.square(32px);
+                    @include m.flex(center, 0);
+                    padding: 7px;
+                }
+
+                background: v.$gold;
+                border-radius: 50%;
+
+                svg{
+                    @include m.fullWH;
+                    object-fit: contain;
+                    object-position: center;
+                }
+            }
+        }
+        h3{
+            @include m.h4(v.$black, 500);
+            @include m.phone{
+                font-size: 24px;
+                line-height: 1.2em;
+            }
+            @media (max-width: 385px){
+                font-size: 22px;
+            }
+        }
+    }
+    &-item{
+        width: 100%;
+        display: block;
+        
+        &>*{
+            width: 100%;
+            overflow: hidden;
+        }
+        video{
+            width: 100%;
+            aspect-ratio: 16/11.975;
+            @include m.transition(.45s);
+            object-fit: cover;
+            object-position: center;
+
+            @media (min-width: v.$phone){
+                height: auto;
+            }
+            @include m.phone{
+                min-height: 280px;
+            }
+            @media (max-width: 400px){
+                height: 280px;
+            }
+        }
+
+        &:hover{
+            video{
+                transform: scale(1.1);
+            }
+            .toUp{
+                transform: none;
+            }
+        }
+    }
+
+    @include m.animation_for_title;
+}

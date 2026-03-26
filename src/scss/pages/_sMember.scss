@@ -1,0 +1,180 @@
+@use "base/mixins" as m;
+@use "base/variables" as v;
+
+.single_member{
+    @include m.above;
+    @include m.padding_above_header;
+
+    &-grid{
+        @media (min-width: v.$laptop){
+            @include m.grid(2, m.px-to-vw(24px));
+            align-items: flex-start;
+        }
+        @include m.laptop{
+            @include m.grid(2, 18px);
+            align-items: flex-start;
+        }
+        @media (max-width: 1100px){
+            grid-template-columns: 100%;
+            grid-gap: 2rem;
+        }
+
+        &>*{
+            width: 100%;
+        }
+    }
+    &-info{
+        &>p{
+            @include m.body(v.$black);
+        }
+        h1{
+            @include m.h3(v.$black);
+
+            @media (min-width: v.$laptop){
+                margin-block: m.px-to-vw(8px);
+            }
+            @include m.laptop{
+                margin-block: 6px;
+            }
+        }
+        h2{
+            @include m.h5(v.$black);
+        }
+    }
+    &-description{
+        @media (min-width: v.$laptop){
+            margin-block: m.px-to-vw(24px);
+        }
+        @include m.laptop{
+            margin-block: 18px;
+        }
+        @include m.tablet{
+            margin-block: 1rem;
+        }
+
+        p{
+            @include m.h6(v.$black);
+        }
+    }
+    &-image{
+        @media (min-width: v.$laptop){
+            height: m.px-to-vw(542px);
+        }
+        @include m.laptop{
+            height: 490px;
+        }
+        @include m.tablet{
+            height: 400px;
+        }
+        @include m.phone{
+            height: auto;
+        }
+
+        &.for_mobile{
+            margin-top: 1rem;
+            @media (min-width: v.$phone){
+                display: none;
+            }
+        }
+        &:not(.for_mobile){
+            @include m.phone{
+                display: none;
+            }
+        }
+
+        video, img{
+            display: block;
+            margin-inline: auto;
+            width: auto;
+            object-fit: contain;
+            object-position: center;
+            max-width: 100%;
+
+            @media (min-width: v.$phone){
+                height: 100%;
+            }
+        }
+        video{
+            width: 100%;
+
+            @include m.phone{
+                aspect-ratio: 9/12;
+            }
+        }
+    }
+
+    &-actions{
+        @media (min-width: v.$laptop){
+            margin-top: m.px-to-vw(40px);
+            @include m.flex(flex-start, m.px-to-vw(16px));
+        }
+        @include m.laptop{
+            margin-top: 30px;
+            @include m.flex(flex-start, 12px);
+        }
+        @include m.tablet{
+            margin-top: 24px;
+        }
+
+        a{
+            &.linkedin{
+                @include m.button(105px, v.$white, v.$black);
+                &::after{
+                    filter: none;
+                    background: url(../../images/vec-linkedin.svg) no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                }
+            }
+            &.instagram{
+                @include m.button(123px, v.$black, v.$white);
+                &::after{
+                    filter: none;
+                    background: url(../../images/vec-instagram.svg) no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                }
+            }
+            &.email{
+                @include m.button(83px, v.$black, v.$white);
+                &::after{
+                    filter: none;
+                    background: url(../../images/vec-email.svg) no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                }
+            }
+            &.phone{
+                @include m.button(90px, v.$black, v.$white);
+                &::after{
+                    filter: none;
+                    background: url(../../images/vec-phone.svg) no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                }
+            }
+
+            &.instagram, &.email, &.phone{
+                @media (min-width: v.$laptop){
+                    border: m.px-to-vw(1px) solid rgba($color: v.$black, $alpha: 0.1);
+                }
+                @include m.laptop{
+                    border: 1px solid rgba($color: v.$black, $alpha: 0.1);
+                }
+            }
+
+        }
+    }
+}
+
+.single_member-section{
+    @media (min-width: v.$laptop){
+        padding-block: 0 m.px-to-vw(120px);
+    }
+    @include m.laptop{
+        padding-block: 0 90px;
+    }
+    @include m.tablet{
+        padding-block: 0 60px;
+    }
+}
