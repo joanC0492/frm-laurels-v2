@@ -39,8 +39,7 @@ $s04_requirements = get_field('s04_requirements');
 // ── Section 05 — What's In It For You ───────────────────────────────
 $s05_image = get_field('s05_image');
 $s05_title = get_field('s05_title');
-$s05_checklist = get_field('s05_checklist');
-$s05_footnote = get_field('s05_footnote');
+$s05_list = get_field('s05_list');
 $s05_senior_title = get_field('s05_senior_title');
 $s05_senior_checklist = get_field('s05_senior_checklist');
 
@@ -210,7 +209,7 @@ get_header(); ?>
     <?php endif; ?>
 
     <!-- ===================== SECTION 05 — What's In It For You (dark) ===================== -->
-    <?php if (!empty($s05_title) || !empty($s05_checklist)): ?>
+    <?php if (!empty($s05_title) || !empty($s05_list)): ?>
         <section id="section-05" class="join-section-05">
             <div class="join-section-05__grid">
                 <?php if (!empty($s05_image)): ?>
@@ -222,15 +221,19 @@ get_header(); ?>
                     <?php if (!empty($s05_title)): ?>
                         <h2 class="join-section-05__title"><?= esc_html($s05_title); ?></h2>
                     <?php endif; ?>
-                    <?php if (!empty($s05_checklist)): ?>
-                        <ul class="join-section-05__checklist">
-                            <?php foreach ($s05_checklist as $item): ?>
-                                <li><?= wp_kses_post($item['item']); ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    <?php endif; ?>
-                    <?php if (!empty($s05_footnote)): ?>
-                        <p class="join-section-05__footnote"><?= esc_html($s05_footnote); ?></p>
+                    <?php if (!empty($s05_list)): ?>
+                        <?php foreach ($s05_list as $list_row): ?>
+                            <?php if (!empty($list_row['s05_checklist'])): ?>
+                                <ul class="join-section-05__checklist">
+                                    <?php foreach ($list_row['s05_checklist'] as $item): ?>
+                                        <li><?= wp_kses_post($item['item']); ?></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                            <?php if (!empty($list_row['s05_footnote'])): ?>
+                                <p class="join-section-05__footnote"><?= esc_html($list_row['s05_footnote']); ?></p>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     <?php endif; ?>
                     <?php if (!empty($s05_senior_title)): ?>
                         <h3 class="join-section-05__subtitle"><?= esc_html($s05_senior_title); ?></h3>
@@ -330,7 +333,7 @@ get_header(); ?>
                     <?php if (!empty($s08_closing_text))
                         echo wp_kses_post($s08_closing_text); ?>
                     <?php if (!empty($s08_contact)): ?>
-                        <p class="join-section-08__contact"><strong><?= esc_html($s08_contact); ?></strong></p>
+                        <div class="join-section-08__contact"><?= wp_kses_post($s08_contact); ?></div>
                     <?php endif; ?>
                 </div>
             </div>
