@@ -24,7 +24,7 @@
 <body <?php body_class(); ?>>
 
     <?php
-    if (is_front_page() || is_page('partners') || is_page('about') || is_page('expertise') || is_page('prime-real-estate') || is_page('commercial-real-estate')) {
+    if (is_front_page() || is_page('partners') || is_page('about') || is_page('expertise') || is_page('prime-real-estate') || is_page('commercial-real-estate') || is_page('partners-test')) {
         $scroll = true;
     } else {
         $scroll = false;
@@ -33,8 +33,8 @@
     ?>
 
     <header class="header <?php if (!$scroll) {
-                                echo 'scrolled';
-                            } ?>">
+        echo 'scrolled';
+    } ?>">
         <div class="container">
             <div class="header_grid">
                 <div class="header_menu">
@@ -42,17 +42,22 @@
                     <?php wp_nav_menu(array('theme_location' => 'header-menu', 'container_class' => 'header_nav w-100', 'menu_class' => 'ul_menu')); ?>
                 </div>
                 <div>
-                    <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo get_bloginfo('name'); ?>" class="header_logo page_logo d-block w-100">
-                        <img src="<?php echo IMG; ?>/logo.svg" width="439" height="211" title="<?php echo get_bloginfo('name'); ?>" alt="<?php echo get_bloginfo('name'); ?>" class="w-100" loading="lazy">
+                    <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo get_bloginfo('name'); ?>"
+                        class="header_logo page_logo d-block w-100">
+                        <img src="<?php echo IMG; ?>/logo.svg" width="439" height="211"
+                            title="<?php echo get_bloginfo('name'); ?>" alt="<?php echo get_bloginfo('name'); ?>"
+                            class="w-100" loading="lazy">
                     </a>
                 </div>
                 <div class="header_submenu">
                     <ul class="actions">
                         <li>
-                            <a href="<?php echo esc_url(home_url('get-in-touch')) ?>" title="Contact" target="_blank">Contact</a>
+                            <a href="<?php echo esc_url(home_url('get-in-touch')) ?>" title="Contact"
+                                target="_blank">Contact</a>
                         </li>
                         <li>
-                            <a href="<?php echo esc_url(home_url('get-in-touch')) ?>?valuation" title="Book A Valuation" target="_blank">Book A Valuation</a>
+                            <a href="<?php echo esc_url(home_url('get-in-touch')) ?>?valuation" title="Book A Valuation"
+                                target="_blank">Book A Valuation</a>
                         </li>
                     </ul>
                     <button type="button" class="header_burger toggle_menu">

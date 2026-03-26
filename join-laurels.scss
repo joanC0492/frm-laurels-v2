@@ -5,15 +5,13 @@
 // Compilar: sass join-laurels.scss join-laurels.css
 // ==========================================================================
 
+.join-hero__container,
+.join-section-02 {
+  @include m.padding_block_section;
+}
 // ==========================================================================
-// HERO
+// |
 // ==========================================================================
-
-// .join-laurels {
-//   & > section {
-//     min-height: 559.32px;
-//   }
-// }
 
 .join-hero {
   position: relative;
@@ -26,13 +24,10 @@
   }
 
   @include m.laptop {
-    // min-height: 500px;
-    // min-height: 620px;
     height: auto;
   }
 
   @include m.tablet {
-    // min-height: 380px;
   }
 
   &__bg {
@@ -53,18 +48,16 @@
     justify-content: space-between;
     height: 100%;
     @media (min-width: v.$laptop) {
-      // padding-block: m.px-to-vw(80px) m.px-to-vw(60px);
-      padding-block: m.px-to-vw(110px) m.px-to-vw(55px);
       min-height: m.px-to-vw(620px);
     }
 
     @include m.laptop {
-      padding-block: 94px 48px;
       min-height: 620px;
+      margin-top: 32px;
     }
 
     @include m.tablet {
-      padding-block: 120px 36px;
+      // padding-block: 120px 36px;
     }
   }
 
@@ -74,46 +67,36 @@
   }
 
   &__title {
-    color: v.$white;
-    font-weight: 800;
-    margin: 0;
+    @include m.h1;
 
     @media (min-width: v.$laptop) {
-      font-size: m.px-to-vw(96px);
-      line-height: 1em;
-      letter-spacing: m.px-to-vw(-3px);
+      bottom: m.px-to-vw(-242px);
     }
 
     @include m.laptop {
-      font-size: 72px;
-      letter-spacing: -2px;
+      bottom: -242px;
     }
 
-    @include m.notebook {
-      font-size: 58px;
-    }
-
-    @include m.tablet {
+    @include m.phone {
       font-size: 40px;
-      letter-spacing: -1px;
     }
   }
 
   &__subtitle {
+    line-height: 1.6;
+    font-weight: 400;
     color: v.$white;
-    font-weight: 500;
-    margin: 0;
-
     @media (min-width: v.$laptop) {
-      font-size: m.px-to-vw(26px);
-      margin-top: m.px-to-vw(10px);
+      margin-top: m.px-to-vw(16px);
+      font-size: m.px-to-vw(19px);
+      bottom: m.px-to-vw(-40px);
     }
-
     @include m.laptop {
-      font-size: 20px;
-      margin-top: 8px;
+      margin-top: 12px;
+      font-size: 17.5px;
+      line-height: 1.3em;
+      bottom: -40px;
     }
-
     @include m.tablet {
       font-size: 16px;
     }
@@ -135,12 +118,12 @@
 
   &__tagline {
     color: v.$white;
-    font-weight: 500;
+    font-weight: 400;
     margin: 0;
-
+    font-family: "Poppins", serif;
+    line-height: 1.6;
     @media (min-width: v.$laptop) {
       font-size: m.px-to-vw(17px);
-      line-height: 1.6em;
     }
 
     @include m.laptop {
@@ -151,6 +134,7 @@
   &__logo {
     display: block;
     object-fit: contain;
+    filter: invert(1);
 
     @media (min-width: v.$laptop) {
       width: m.px-to-vw(160px);
@@ -176,11 +160,11 @@
   overflow: hidden;
 
   @media (min-width: v.$laptop) {
-    padding-block: m.px-to-vw(80px);
+    // padding-block: m.px-to-vw(80px);
   }
 
   @include m.laptop {
-    padding-block: 64px;
+    // padding-block: 64px;
   }
 
   &__leaf {
@@ -244,35 +228,42 @@
   }
 
   &__title {
-    color: v.$white;
-    font-weight: 700;
-    margin: 0;
-
+    // color: v.$white;
+    // font-weight: 700;
+    // margin: 0;
+    // @media (min-width: v.$laptop) {
+    //   font-size: m.px-to-vw(22px);
+    //   line-height: 1.5em;
+    //   margin-bottom: m.px-to-vw(24px);
+    // }
+    // @include m.laptop {
+    //   font-size: 18px;
+    //   margin-bottom: 18px;
+    // }
+    @include m.h4(v.$white, 500);
     @media (min-width: v.$laptop) {
-      font-size: m.px-to-vw(22px);
-      line-height: 1.5em;
       margin-bottom: m.px-to-vw(24px);
     }
-
     @include m.laptop {
-      font-size: 18px;
       margin-bottom: 18px;
     }
   }
 
   &__text {
-    p {
-      @include m.body(v.$white);
-      margin: 0;
-
+    p {      
+      font-weight: 400;
+      color: v.$white;
+      line-height: 1.4222;
       @media (min-width: v.$laptop) {
+        font-size: m.px-to-vw(18px);
+        // line-height: 1.6em; // 25.6px
         margin-bottom: m.px-to-vw(16px);
       }
-
       @include m.laptop {
+        font-size: 16px;
+        // line-height: 1.3em;
         margin-bottom: 12px;
       }
-
       &:last-child {
         margin-bottom: 0;
       }
